@@ -8,7 +8,7 @@ data class Game(val id: String,
                 val tournament: Tournament?,
                 val participants: Teams,
                 val wins: Team,
-                val losers: Team,
+                val loses: Team,
                 val concluded: Boolean,
                 val date: Date) : Serializable
 
