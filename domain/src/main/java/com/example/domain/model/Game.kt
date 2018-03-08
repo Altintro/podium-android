@@ -5,6 +5,8 @@ import java.io.Serializable
 import java.util.*
 
 data class Game(val id: String,
+                val name: String,
+                val sport: Sport?,
                 val tournament: Tournament?,
                 val participants: Teams,
                 val wins: Team,

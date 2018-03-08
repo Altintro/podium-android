@@ -6,20 +6,24 @@ import java.util.*
 
 data class User(val id: String,
                 val name: String,
-                val alias: String,
-                val email: String,
                 val image: String,
-                val gender: Enums.Gender,
+                val alias: String,
+                val gender: Gender,
                 val birthdate: String,
                 val latitude: Float,
                 val longitude: Float,
+                val email: String,
                 val ranking: UserRankings,
                 val interests: Sports,
                 val emblems: Emblems?,
-                val played: Tournaments?,
-                val playing: Tournaments?,
-                val won: Tournaments?,
-                val upcoming: Games?) : Serializable
+                val tournamentsPlayed: Tournaments?,
+                val tournamentsPlaying: Tournaments?,
+                val tournamentsUpcoming: Tournaments?,
+                val tournamentsWon: Tournaments?,
+                val gamesPlayed: Games?,
+                val gamesPlaying: Games?,
+                val gamesUpcoming: Games?,
+                val gamesWon: Games?) : Serializable
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size

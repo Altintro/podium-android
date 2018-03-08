@@ -9,7 +9,7 @@ data class Sport(val id: String,
                     val description: String,
                     val rules: String,
                     val popularity: Float,
-                    val sides: Enums.Side,
+                    val modality: Modality,
                     val activeTournaments: Tournaments,
                     val openTournaments: Tournaments,
                     val ranking: Users) : Serializable
