@@ -14,7 +14,7 @@ data class User(@SerializedName("_id") val id: String,
                 val longitude: Float,
                 val email: String,
                 val ranking: List<UserRanking>,
-                val interests: List<Sport>,
+                val interests: Sports,
                 val emblems: List<Emblem>,
                 val tournamentsPlayed: List<Tournament>,
                 val tournamentsPlaying: List<Tournament>,
@@ -23,10 +23,7 @@ data class User(@SerializedName("_id") val id: String,
                 val gamesPlayed: List<Game>,
                 val gamesPlaying: List<Game>,
                 val gamesUpcoming: List<Game>,
-                val gamesWon: List<Game>,
-                val fb: Facebook,
-                val hasPassword: Boolean,
-                val mergedWithFb: Boolean) : Serializable
+                val gamesWon: List<Game>) : Serializable
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size
