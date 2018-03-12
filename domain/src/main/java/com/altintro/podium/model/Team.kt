@@ -4,8 +4,9 @@ import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 
 data class Team(val id: String,
-                val players: Users,
+                val players: List<User>,
                 val name: String,
+                val description: String,
                 val image: String) : Serializable
 
 class Teams (val teams: MutableList<Team>): Aggregate<Team> {
