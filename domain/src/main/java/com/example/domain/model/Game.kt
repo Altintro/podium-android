@@ -17,7 +17,8 @@ data class Game(val id: String,
                 val longitude: Float,
                 val modality: Modality,
                 val open: Boolean,
-                val levelAverage: Level) : Serializable
+                val levelAverage: Level,
+                val description: String) : Serializable
 
 class Games (val games: MutableList<Game>): Aggregate<Game> {
     override fun count(): Int = games.size
