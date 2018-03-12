@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "468467794764",
+    "firebase_url": "https://podium-65f82.firebaseio.com",
+    "project_id": "podium-65f82",
+    "storage_bucket": "podium-65f82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468467794764:android:9eef3b296ec293f6",
+        "android_client_info": {
+          "package_name": "com.altintro.podium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468467794764-qgocb4o3p6vrfc6r51d9pu67kq3t7f3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGnGbkAarYYG6p_SptGj8IdbFYqbUchN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
