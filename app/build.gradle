@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.example.a630465.podium"
+        applicationId "com.altintro.podium"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
