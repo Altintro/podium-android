@@ -30,7 +30,10 @@ object Mapper {
                         it.gamesPlayed,
                         it.gamesPlaying,
                         it.gamesUpcoming,
-                        it.gamesWon)
+                        it.gamesWon,
+                        it.fb,
+                        it.hasPassword,
+                        it.mergedWithFb)
 
                 tempList.add(user)
         }
