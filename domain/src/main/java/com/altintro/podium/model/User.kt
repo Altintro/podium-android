@@ -1,9 +1,8 @@
-package com.example.domain.model
+package com.altintro.podium.model
 
 import com.google.gson.annotations.SerializedName
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
-import java.util.*
 
 data class User(@SerializedName("_id") val id: String,
                 val name: String,

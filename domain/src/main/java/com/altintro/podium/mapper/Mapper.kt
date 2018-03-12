@@ -1,7 +1,7 @@
-package com.example.domain.mapper
+package com.altintro.podium.mapper
 
-import com.example.domain.model.User
-import com.example.domain.model.Users
+import com.altintro.podium.model.User
+import com.altintro.podium.model.Users
 import java.util.ArrayList
 
 

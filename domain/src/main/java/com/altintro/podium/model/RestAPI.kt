@@ -1,4 +1,4 @@
-package com.example.domain.model
+package com.altintro.podium.model
 
 import java.io.Serializable
 

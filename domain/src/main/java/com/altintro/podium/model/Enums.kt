@@ -1,4 +1,4 @@
-package com.example.domain.model
+package com.altintro.podium.model
 
 
 enum class Level {

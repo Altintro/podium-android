@@ -1,11 +1,11 @@
-package com.example.domain.model
+package com.altintro.podium.model
 
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 
 data class UserRanking(val sport: Sport,
-                        val ranking: Int,
-                        val points: Int) : Serializable
+                       val ranking: Int,
+                       val points: Int) : Serializable
 
 class UserRankings (val userRankings: MutableList<UserRanking>): Aggregate<UserRanking> {
     override fun count(): Int = userRankings.size

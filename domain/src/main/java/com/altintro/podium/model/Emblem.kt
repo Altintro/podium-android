@@ -1,8 +1,7 @@
-package com.example.domain.model
+package com.altintro.podium.model
 
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
-import java.util.*
 
 data class Emblem(val id: String,
                   val name: String,
