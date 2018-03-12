@@ -8,17 +8,18 @@ data class Tournament(val id: String,
                       val name: String,
                       val sport: Sport,
                       val compType: CompType,
-                      val participants: Teams,
-                      val players: Users,
+                      val participants: List<Team>,
+                      val players: List<User>,
                       val games: Games,
                       val levelAverage: Level,
                       val starts: String,
                       val finishes: String,
-                      val clasification: Clasifications,
+                      val clasification: List<Clasification>,
                       val latitude: Float,
                       val longitude: Float,
                       val open: Boolean,
-                      val rankPoints: Float) : Serializable
+                      val rankPoints: Float,
+                      val modality: Modality) : Serializable
 
 class Tournaments (val tournaments: MutableList<Tournament>): Aggregate<Tournament> {
     override fun count(): Int = tournaments.size

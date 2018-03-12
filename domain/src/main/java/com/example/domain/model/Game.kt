@@ -6,13 +6,18 @@ import java.util.*
 
 data class Game(val id: String,
                 val name: String,
-                val sport: Sport?,
-                val tournament: Tournament?,
-                val participants: Teams,
+                val sport: List<Sport>,
+                val tournament: List<Tournament>,
+                val participants: List<Team>,
                 val wins: Team,
                 val loses: Team,
                 val concluded: Boolean,
-                val date: Date) : Serializable
+                val date: Date,
+                val latitude: Float,
+                val longitude: Float,
+                val modality: Modality,
+                val open: Boolean,
+                val levelAverage: Level) : Serializable
 
 class Games (val games: MutableList<Game>): Aggregate<Game> {
     override fun count(): Int = games.size

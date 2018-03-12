@@ -1,29 +1,30 @@
 package com.example.domain.model
 
+import com.google.gson.annotations.SerializedName
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 import java.util.*
 
-data class User(val id: String,
+data class User(@SerializedName("_id") val id: String,
                 val name: String,
-                val image: String,
+                val profilePic: String,
                 val alias: String,
                 val gender: Gender,
                 val birthdate: String,
                 val latitude: Float,
                 val longitude: Float,
                 val email: String,
-                val ranking: UserRankings,
+                val ranking: List<UserRanking>,
                 val interests: Sports,
-                val emblems: Emblems?,
-                val tournamentsPlayed: Tournaments?,
-                val tournamentsPlaying: Tournaments?,
-                val tournamentsUpcoming: Tournaments?,
-                val tournamentsWon: Tournaments?,
-                val gamesPlayed: Games?,
-                val gamesPlaying: Games?,
-                val gamesUpcoming: Games?,
-                val gamesWon: Games?) : Serializable
+                val emblems: List<Emblem>,
+                val tournamentsPlayed: List<Tournament>,
+                val tournamentsPlaying: List<Tournament>,
+                val tournamentsUpcoming: List<Tournament>,
+                val tournamentsWon: List<Tournament>,
+                val gamesPlayed: List<Game>,
+                val gamesPlaying: List<Game>,
+                val gamesUpcoming: List<Game>,
+                val gamesWon: List<Game>) : Serializable
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size
