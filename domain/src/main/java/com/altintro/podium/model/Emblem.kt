@@ -8,7 +8,7 @@ data class Emblem(val id: String,
                   val sigil: String,
                   val description: String,
                   val requirements: String,
-                  val users: Users) : Serializable
+                  val users: List<User>) : Serializable
 
 class Emblems (val emblems: MutableList<Emblem>): Aggregate<Emblem> {
     override fun count(): Int = emblems.size

@@ -11,7 +11,9 @@ data class Sport(val id: String,
                  val popularity: Float,
                  val activeTournaments: List<Tournament>,
                  val openTournaments: List<Tournament>,
-                 val ranking: Users) : Serializable
+                 val activeGames: List<Game>,
+                 val openGames: List<Game>,
+                 val ranking: List<User>) : Serializable
 
 class Sports (val sports: MutableList<Sport>): Aggregate<Sport> {
     override fun count(): Int = sports.size
