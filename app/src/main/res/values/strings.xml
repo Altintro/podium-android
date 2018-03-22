@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Podium</string>
+    <string name="facebook_app_id">800116240172464</string>
+    <string name="fb_login_protocol_scheme">fb800116240172464</string>
+    <string name="google_client_web">468467794764-qgocb4o3p6vrfc6r51d9pu67kq3t7f3d.apps.googleusercontent.com</string>
+    <string name="sign_in">Sign in</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="login_with_google">{typcn-social-google-plus 38dp} %1$s Connect with Google</string>
+    <string name="login_with_facebook">{fa-facebook-f 25dp} %1$s Connect with Facebook</string>
+    <string name="login_with_email">{fa-envelope-o 24dp} %1$s Sign up with Email</string>
 </resources>

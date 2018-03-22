@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_login">16dp</dimen>
+    <dimen name="text_button_login">20dp</dimen>
+    <dimen name="margin_button_width">62dp</dimen>
+    <dimen name="button_login_height">50dp</dimen>
+    <dimen name="margin_between_buttons">12dp</dimen>
+</resources>

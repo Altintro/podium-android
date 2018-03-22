@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.altintro.podium.RegistrationActivity"
+    android:background="@color/view_login">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="120dp"
+        android:text="{md-cloud-queue 120dp}"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="34dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:text="@string/app_name"
+        android:textColor="@color/com_facebook_button_text_color"
+        android:textSize="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:id="@+id/btn_login_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_login_height"
+        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="@dimen/margin_button_width"
+        android:layout_marginStart="@dimen/margin_button_width"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/btn_login_facebook"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:textAlignment="viewStart"
+        android:textColor="@color/com_facebook_button_text_color"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:id="@+id/btn_login_google"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_login_height"
+        android:layout_marginEnd="@dimen/margin_button_width"
+        android:layout_marginStart="@dimen/margin_button_width"
+        android:layout_marginTop="@dimen/margin_between_buttons"
+        android:background="@drawable/btn_login_google"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:textAlignment="viewStart"
+        android:textColor="@color/com_facebook_button_text_color"
+        android:textSize="@dimen/text_button_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_facebook" />
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:id="@+id/btn_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_login_height"
+        android:layout_marginEnd="@dimen/margin_button_width"
+        android:layout_marginStart="@dimen/margin_button_width"
+        android:layout_marginTop="@dimen/margin_between_buttons"
+        android:background="@drawable/btn_login_email"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:textAlignment="viewStart"
+        android:textColor="@color/com_facebook_button_text_color"
+        android:textSize="@dimen/text_button_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_google" />
+
+    <TextView
+        android:id="@+id/tv_alreadyAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:text="@string/already_have_account"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_email" />
+
+    <TextView
+        android:id="@+id/tv_SignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@string/com_facebook_loginview_log_in_button"
+        android:text="@string/sign_in"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tv_alreadyAccount"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_email"
+        android:clickable="true"/>
+
+
+
+</android.support.constraint.ConstraintLayout>
