@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.altintro.podium.UserDetailActivity"></activity>
+        <activity android:name="com.altintro.podium.UserDetailActivity" />
+        <activity android:name="com.altintro.podium.activity.UserProfileActivity"></activity>
     </application>
 
 </manifest>

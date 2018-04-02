@@ -1,6 +1,5 @@
 package com.altintro.podium.model
 
-import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 
 data class UserRanking(val sport: Sport,

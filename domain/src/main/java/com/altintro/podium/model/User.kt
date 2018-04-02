@@ -1,7 +1,6 @@
 package com.altintro.podium.model
 
 import com.google.gson.annotations.SerializedName
-import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 
 data class User(@SerializedName("_id") val id: String,
@@ -26,7 +25,20 @@ data class User(@SerializedName("_id") val id: String,
                 val gamesWon: List<Game>? = null,
                 val fb: Facebook? = null,
                 val hasPassword: Boolean? = false,
-                val mergedWithFb: Boolean? = false) : Serializable
+                val mergedWithFb: Boolean? = false) : Listable {
+
+    override fun getImage(): String {
+        return profilePic
+    }
+
+    override fun getTitle(): String {
+        return name
+    }
+
+    override fun getSubtitle(): String {
+        return "${tournamentsPlayed?.count()} games played..."
+    }
+}
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size

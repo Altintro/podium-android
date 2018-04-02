@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -42,6 +43,10 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // enabling multidex suport to avoid 64K method limit
+    // see: https://developer.android.com/studio/build/multidex.html
+    implementation 'com.android.support:multidex:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
