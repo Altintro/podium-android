@@ -8,7 +8,6 @@ import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.interactor.getUser.GetUserInteractor
 import com.altintro.podium.interactor.getUser.GetUserInteractorFakeImpl
 import com.altintro.podium.model.User
-import com.example.a630465.podium.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

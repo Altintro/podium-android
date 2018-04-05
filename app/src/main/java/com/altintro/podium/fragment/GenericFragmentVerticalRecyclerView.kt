@@ -8,18 +8,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.altIntro.podium.R
 import com.altintro.podium.OrientationMode
 import com.altintro.podium.adapter.GenericRecyclerViewAdapter
 
 import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
-import com.example.a630465.podium.R
 
 class GenericFragmentVerticalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fragment() {
     companion object {
         val ARG_CONTENT = "ARG_CONTENT"
 
-        fun <Z: Listable, T : Aggregate<Z>> newInstance(content: T): GenericFragmentVerticalRecyclerView<Z,T> {
+        fun <Z: Listable, T : Aggregate<Z>> newInstance(content: T?): GenericFragmentVerticalRecyclerView<Z,T> {
             val fragment = GenericFragmentVerticalRecyclerView<Z,T>()
             val arguments = Bundle()
 

@@ -2,21 +2,14 @@ package com.altintro.podium.fragment
 
 import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.altintro.podium.OrientationMode
-import com.altintro.podium.adapter.GenericRecyclerViewAdapter
-import com.altintro.podium.model.Aggregate
+import android.widget.ImageView
+import android.widget.TextView
+import com.altIntro.podium.R
 import com.altintro.podium.model.Listable
-import com.altintro.podium.model.User
-import com.example.a630465.podium.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.generic_fragment_detail_header.*
-import kotlinx.android.synthetic.main.generic_fragment_detail_header.view.*
 
 class GenericFragmentDetailHeader <T: Listable>: Fragment() {
     companion object {
@@ -34,16 +27,27 @@ class GenericFragmentDetailHeader <T: Listable>: Fragment() {
 
     }
 
+    lateinit var fragmentView: View
+    lateinit var image: ImageView
+    lateinit var textTitle: TextView
+    lateinit var textSubTitle: TextView
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val fragmentView = super.onCreateView(inflater, container, savedInstanceState)
-        val content = arguments.getSerializable(ARG_CONTENT) as T
+        if (inflater != null) {
 
-        Picasso.with(activity).load(content.getImage()).placeholder(android.R.drawable.alert_dark_frame).into(image)
-        text_title.text = content.getTitle()
-        text_sub_title.text = content.getSubtitle()
+            val content = arguments.getSerializable(ARG_CONTENT) as T
 
+            fragmentView = inflater.inflate(R.layout.generic_fragment_detail_header, container, false)
+            image = fragmentView.findViewById(R.id.image)
+            textTitle = fragmentView.findViewById(R.id.text_title)
+            textSubTitle = fragmentView.findViewById(R.id.text_sub_title)
+
+            Picasso.with(activity).load(content.get_Image()).placeholder(android.R.drawable.alert_dark_frame).into(image)
+            textTitle.text = content.getTitle()
+            textSubTitle.text = content.getSubtitle()
+        }
         return fragmentView
     }
 }

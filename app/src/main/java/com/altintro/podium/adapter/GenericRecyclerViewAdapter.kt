@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.altIntro.podium.R
 import com.altintro.podium.OrientationMode
 import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
-import com.example.a630465.podium.R
 import com.squareup.picasso.Picasso
 
 
@@ -20,7 +20,8 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ContentViewHolder {
-        val cellLayout = if (orientation == OrientationMode.VERTICAL) {R.layout.generic_cell_vertical} else {R.layout.generic_cell_horizontal}
+        val cellLayout = if (orientation == OrientationMode.VERTICAL) {
+            R.layout.generic_cell_vertical} else {R.layout.generic_cell_horizontal}
         val view = LayoutInflater.from(parent?.context).inflate(cellLayout, parent, false)
         view.setOnClickListener(onClickListener)
         context = parent!!.getContext()
@@ -33,7 +34,7 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
 
     override fun onBindViewHolder(holder: ContentViewHolder?, position: Int) {
 
-        val contentImage= content.get(position).getImage()
+        val contentImage= content.get(position).get_Image()
         val contentTitle = content.get(position).getTitle()
         val contentSubTitle = if (orientation == OrientationMode.VERTICAL) { content.get(position).getSubtitle() } else {""}
 
@@ -48,7 +49,7 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
 
         fun bindShop(image: String, title: String, subTitle: String) {
 
-            Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
+            if (image != "") {Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)}
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }
         }

@@ -13,21 +13,21 @@ data class User(@SerializedName("_id") val id: String,
                 val longitude: Float,
                 val email: String,
                 val ranking: List<UserRanking>? = null,
-                val interests: List<Sport>? = null,
+                val interests: Sports? = null,
                 val emblems: List<Emblem>? = null,
                 val tournamentsPlayed: List<Tournament>? = null,
                 val tournamentsPlaying: List<Tournament>? = null,
                 val tournamentsUpcoming: List<Tournament>? = null,
                 val tournamentsWon: List<Tournament>? = null,
-                val gamesPlayed: List<Game>? = null,
-                val gamesPlaying: List<Game>? = null,
-                val gamesUpcoming: List<Game>? = null,
+                val gamesPlayed: Games? = null,
+                val gamesPlaying: Games? = null,
+                val gamesUpcoming: Games? = null,
                 val gamesWon: List<Game>? = null,
                 val fb: Facebook? = null,
                 val hasPassword: Boolean? = false,
                 val mergedWithFb: Boolean? = false) : Listable {
 
-    override fun getImage(): String {
+    override fun get_Image(): String {
         return profilePic
     }
 
@@ -36,8 +36,16 @@ data class User(@SerializedName("_id") val id: String,
     }
 
     override fun getSubtitle(): String {
-        return "${tournamentsPlayed?.count()} games played..."
+
+        if (gamesWon?.count() != 0) {
+            var diferentSports = gamesWon?.groupingBy { it.sport.name }?.eachCount()?.count()
+            return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
+        } else {
+            return "no victories registered ..."
+        }
+
     }
+
 }
 
 class Users(val users: MutableList<User>): Aggregate<User> {

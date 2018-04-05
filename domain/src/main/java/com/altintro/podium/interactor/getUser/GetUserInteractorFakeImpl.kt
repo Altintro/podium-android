@@ -3,7 +3,6 @@ package com.altintro.podium.interactor.getUser
 import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.model.*
-import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,8 +32,9 @@ class GetUserInteractorFakeImpl : GetUserInteractor {
                 latitude = 40.416775f,    // Madrid latitude
                 longitude =  -3.703790f,   // Madrid longitude
                 email = "a@b.c",
+                interests = fakeSports(7, "Sport #"),
                 gamesPlayed = fakeGames(15, "Played game #"),
-                gamesWon = fakeGames(4, "Won game #"),
+                gamesWon = ArrayList<Game>(),
                 gamesUpcoming = fakeGames(6, "Next game #"),
                 gamesPlaying = fakeGames(2, "Playing game #")
         )
@@ -43,14 +43,16 @@ class GetUserInteractorFakeImpl : GetUserInteractor {
     }
 
 
-    private fun fakeGames(number: Int, title: String): List<Game> {
+    private fun fakeGames(number: Int, title: String): Games {
 
-        val games = ArrayList<Game>()
+        val games = Games(ArrayList<Game>())
 
-        for (i in 0..number) {
+        for (i in 1..number) {
             val game = Game(i.toString(),
                             name = title + i,
-                            sport = ArrayList<Sport>(),
+                            sport = Sport(id = "sport",
+                                        name = "Sport",
+                                        image = "https://i.pinimg.com/736x/65/ba/df/65badfdb809651268d56d7d1c2a06619--sport-icon-children-s.jpg"),
                             tournament = ArrayList<Tournament>(),
                             participants = ArrayList<Team>(),
                             wins = Team("", ArrayList<User>(), "", ""),
@@ -68,6 +70,20 @@ class GetUserInteractorFakeImpl : GetUserInteractor {
         }
 
         return games
+    }
+
+    private fun fakeSports(number: Int, title: String): Sports {
+
+        val sports = Sports(ArrayList<Sport>())
+
+        for (i in 1..number) {
+            val sport = Sport(id = i.toString(),
+                    name = title + i,
+                    image = "https://i.pinimg.com/736x/65/ba/df/65badfdb809651268d56d7d1c2a06619--sport-icon-children-s.jpg")
+            sports.add(sport)
+        }
+
+        return sports
     }
 }
 

@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/default_margin"
-    android:layout_marginEnd="@dimen/extra_small_margin"
-    android:layout_marginStart="@dimen/extra_small_margin"
-    android:layout_marginTop="@dimen/no_margin">
+    android:layout_marginEnd="@dimen/extended_margin"
+    android:layout_marginStart="@dimen/extended_margin">
 
     <ImageView
         android:id="@+id/content_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -27,8 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/content_image"
         app:layout_constraintStart_toStartOf="@+id/content_image"

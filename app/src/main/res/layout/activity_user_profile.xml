@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.altintro.podium.activity.UserProfileActivity">
@@ -10,21 +11,27 @@
         android:id="@+id/header_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="1"
-    />
+        android:visibility="visible"
+/>
 
     <FrameLayout
-        android:id="@+id/preferences_fragment"
+        android:id="@+id/interests_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="1"
-    />
+/>
 
     <FrameLayout
-        android:id="@+id/games_fragment"
+        android:id="@+id/upcoming_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintVertical_weight="1"
-    />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+/>
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/last_played_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+/>
+
+</LinearLayout>

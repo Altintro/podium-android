@@ -3,7 +3,7 @@ package com.altintro.podium.model
 import java.io.Serializable
 
 interface Listable: Serializable {
-    fun getImage(): String
+    fun get_Image(): String
     fun getTitle(): String
     fun getSubtitle(): String
 }

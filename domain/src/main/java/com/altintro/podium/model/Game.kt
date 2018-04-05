@@ -5,7 +5,7 @@ import java.util.*
 
 data class Game(val id: String,
                 val name: String,
-                val sport: List<Sport> ,
+                val sport: Sport,
                 val tournament: List<Tournament>,
                 val participants: List<Team>,
                 val wins: Team,
@@ -17,7 +17,20 @@ data class Game(val id: String,
                 val modality: Modality,
                 val open: Boolean,
                 val levelAverage: Level,
-                val description: String) : Serializable
+                val description: String) : Listable {
+
+    override fun get_Image(): String {
+        return ""
+    }
+
+    override fun getTitle(): String {
+        return name
+    }
+
+    override fun getSubtitle(): String {
+        return description
+    }
+}
 
 class Games (val games: MutableList<Game>): Aggregate<Game> {
     override fun count(): Int = games.size
