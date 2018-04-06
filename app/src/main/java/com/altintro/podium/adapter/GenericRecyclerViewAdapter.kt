@@ -49,7 +49,12 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
 
         fun bindShop(image: String, title: String, subTitle: String) {
 
-            if (image != "") {Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)}
+            if (image != "") {
+                Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
+            } else {
+                contentimage.visibility = View.INVISIBLE
+                contentimage.isEnabled = false
+            }
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }
         }

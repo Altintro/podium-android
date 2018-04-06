@@ -42,15 +42,15 @@ class UserProfileActivity : AppCompatActivity() {
         fragmentManager.beginTransaction().replace(R.id.header_fragment, userHeaderFragment).commit()
 
         // Configuro fragmento de intereses
-        val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(userExtra.interests)
+        val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(userExtra.interests, "Interests")
         fragmentManager.beginTransaction().replace(R.id.interests_fragment, userPreferencesFragment).commit()
 
         // Configuro fragmento de proximas partidas
-        val userUpcomingFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(userExtra.gamesUpcoming)
+        val userUpcomingFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(userExtra.gamesUpcoming, "Upcoming")
         fragmentManager.beginTransaction().replace(R.id.upcoming_fragment, userUpcomingFragment).commit()
 
         // Configuro fragmento de últimas partidas
-        val userLastPlayedFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(userExtra.gamesPlayed)
-        fragmentManager.beginTransaction().replace(R.id.interests_fragment, userLastPlayedFragment).commit()
+        val userLastPlayedFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(userExtra.gamesPlayed, "Last Played")
+        fragmentManager.beginTransaction().replace(R.id.last_played_fragment, userLastPlayedFragment).commit()
     }
 }
