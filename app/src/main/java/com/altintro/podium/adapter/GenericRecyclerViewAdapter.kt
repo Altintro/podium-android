@@ -1,6 +1,8 @@
 package com.altintro.podium.adapter
 
 import android.content.Context
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -46,14 +48,18 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
         val contentimage = itemView.findViewById<ImageView>(R.id.content_image)
         val contentTitle = itemView.findViewById<TextView>(R.id.content_title)
         val contentSubtitle = itemView.findViewById<TextView>(R.id.content_subtitle)
+        val genericCell = itemView.findViewById<ConstraintLayout>(R.id.generic_cell)
 
         fun bindShop(image: String, title: String, subTitle: String) {
 
+            // Si la imagen  no es vacía la muestro, si lo es oculto el ImageView y redefino las Constraints del título y el subtítulo
             if (image != "") {
                 Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
             } else {
                 contentimage.visibility = View.INVISIBLE
-                contentimage.isEnabled = false
+                //val constraintSet = ConstraintSet()
+                //constraintSet.connect(contentTitle.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID , ConstraintSet.LEFT, 0)
+                //constraintSet.applyTo(genericCell)
             }
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }

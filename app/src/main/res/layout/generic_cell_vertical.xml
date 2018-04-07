@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/shop_card"
+    android:id="@+id/generic_cell"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintStart_toEndOf="@+id/content_image"
         app:layout_constraintTop_toTopOf="@+id/content_image"
         tools:text="Title" />
@@ -37,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@+id/content_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="@+id/content_image"
         app:layout_constraintStart_toEndOf="@+id/content_image"
         app:layout_constraintTop_toBottomOf="@+id/content_title"
