@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.altintro.podium.BaseApp"
+        android:name="com.altintro.podium.Activity.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         >
-        <activity android:name="com.altintro.podium.SplashActivity"
+        <activity android:name="com.altintro.podium.Activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +42,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name="com.altintro.podium.HomeActivity" />
-        <activity android:name="com.altintro.podium.RegistrationActivity"/>
+        <activity android:name="com.altintro.podium.Activity.MainActivity" />
+        <activity android:name="com.altintro.podium.Activity.RegistrationActivity"/>
     </application>
 
 </manifest>

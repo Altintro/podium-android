@@ -8,4 +8,7 @@
     <string name="login_with_google">{typcn-social-google-plus 38dp} %1$s Connect with Google</string>
     <string name="login_with_facebook">{fa-facebook-f 25dp} %1$s Connect with Facebook</string>
     <string name="login_with_email">{fa-envelope-o 24dp} %1$s Sign up with Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/view_login"
-    tools:context="com.altintro.podium.SplashActivity">
+    tools:context="com.altintro.podium.Activity.SplashActivity">
 
     <TextView
         android:id="@+id/title"

@@ -1,4 +1,4 @@
-package com.altintro.podium
+package com.altintro.podium.Activity
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -36,7 +36,7 @@ class RegistrationActivity : AppCompatActivity() {
             override fun onSuccess(result: LoginResult) {
                 Log.d(TAG, "Facebook success: ")
                 prefs.edit().putString("token", result.accessToken.token).apply()
-                startActivity(Intent(applicationContext, HomeActivity::class.java))
+                startActivity(Intent(applicationContext, MainActivity::class.java))
             }
 
             override fun onCancel() {

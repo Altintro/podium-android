@@ -1,4 +1,4 @@
-package com.altintro.podium
+package com.altintro.podium.Activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +14,8 @@ class SplashActivity : AppCompatActivity() {
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            val intent = Intent(applicationContext, RegistrationActivity::class.java)
+ //           val intent = Intent(applicationContext, RegistrationActivity::class.java)
+            val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
