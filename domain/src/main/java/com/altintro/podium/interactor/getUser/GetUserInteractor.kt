@@ -6,5 +6,5 @@ import com.altintro.podium.model.User
 
 
 interface GetUserInteractor {
-    fun execute(success: SuccessCompletion<User>, error: ErrorCompletion)
+    fun execute(userId: String, success: SuccessCompletion<User>, error: ErrorCompletion)
 }

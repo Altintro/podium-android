@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var userToShow: User
 
         val getUserInteractor : GetUserInteractor = GetUserInteractorFakeImpl()
-        getUserInteractor.execute(success = object : SuccessCompletion<User> {
+        getUserInteractor.execute(userId = "a1b2c3d4", success = object : SuccessCompletion<User> {
             override fun successCompletion(data: User) {
                 userToShow = data
             }

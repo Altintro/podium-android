@@ -57,9 +57,9 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
                 Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
             } else {
                 contentimage.visibility = View.INVISIBLE
-                //val constraintSet = ConstraintSet()
-                //constraintSet.connect(contentTitle.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID , ConstraintSet.LEFT, 0)
-                //constraintSet.applyTo(genericCell)
+                val constraintSet = ConstraintSet()
+                constraintSet.connect(contentTitle.id, ConstraintSet.LEFT, contentSubtitle.id , ConstraintSet.RIGHT, 0)
+                constraintSet.applyTo(genericCell)
             }
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }

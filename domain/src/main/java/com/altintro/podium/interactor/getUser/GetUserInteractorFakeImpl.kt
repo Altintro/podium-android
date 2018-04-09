@@ -8,22 +8,22 @@ import kotlin.collections.ArrayList
 
 class GetUserInteractorFakeImpl : GetUserInteractor {
 
-    override fun execute(success: SuccessCompletion<User>, error: ErrorCompletion) {
+    override fun execute(userId: String, success: SuccessCompletion<User>, error: ErrorCompletion) {
         // to play with errors initialize allIsOK with false
         var allIsOK = true
 
         if (allIsOK) {
-            val user = createFakeUser()
+            val user = loadFakeUser(userId)
             success.successCompletion(user)
         } else {
             error.errorCompletion("Error while accessing to the Fake Repository")
         }
     }
 
-    fun createFakeUser(): User {
+    fun loadFakeUser(userId: String): User {
 
         val user = User(
-                id = "a1b2c3d4",
+                id = userId,
                 name = "John Doe",
                 profilePic = "https://i.stack.imgur.com/Lkn5a.png?s=328&g=1",
                 alias = "Jhonny",
