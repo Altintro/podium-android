@@ -6,11 +6,16 @@ import java.io.Serializable
 data class ResponseAuth(val auth: Boolean,
                         val token: String) : Serializable
 
+data class ResponseEmailConnect(val auth: Boolean) : Serializable
+
+data class ResponseMeProfile(val fb: Facebook,
+                             val google: Google,
+                             val user: User)
+
 //-----------------------------------User-----------------------------------
 
 data class UserRegister(var name: String,
                         val alias: String,
-                        val pass: String,
                         val email: String) : Serializable
 
 data class ResponseSearchUser(var success: Boolean,

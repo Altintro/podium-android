@@ -15,6 +15,7 @@ object Mapper {
                         it.name,
                         it.profilePic,
                         it.alias,
+                        it.pass,
                         it.gender,
                         it.birthdate,
                         it.latitude,
@@ -22,7 +23,6 @@ object Mapper {
                         it.email,
                         it.ranking,
                         it.interests,
-                        it.emblems,
                         it.tournamentsPlayed,
                         it.tournamentsPlaying,
                         it.tournamentsUpcoming,
@@ -31,7 +31,7 @@ object Mapper {
                         it.gamesPlaying,
                         it.gamesUpcoming,
                         it.gamesWon,
-                        it.fb,
+                        it.mergedWithGoogle,
                         it.hasPassword,
                         it.mergedWithFb)
 
