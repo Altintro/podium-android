@@ -14,8 +14,14 @@ interface WikiApiService {
 
     //-----------------------------------Authentication-----------------------------------
 
-    @POST("users/register")
-    fun register(@Body userRegister: UserRegister): Observable<ResponseAuth>
+    @POST("users/emailConnect")
+    fun emailConnect(@Query("email") email: String): Observable<ResponseEmailConnect>
+
+    @POST("users/emailRegister")
+    fun emailRegister(@Body userRegister: UserRegister): Observable<ResponseEmailConnect>
+
+    @GET("users/me")
+    fun meProfile(@Header("x-access-token") token: String): Observable<ResponseMeProfile>
 
     @POST("users/login")
     fun login(@Body userRegister: UserRegister): Observable<ResponseAuth>

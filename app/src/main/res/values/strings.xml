@@ -7,6 +7,13 @@
     <string name="already_have_account">Already have account?</string>
     <string name="login_with_google">{typcn-social-google-plus 38dp} %1$s Connect with Google</string>
     <string name="login_with_facebook">{fa-facebook-f 25dp} %1$s Connect with Facebook</string>
+    <string name="login_with_email">{fa-envelope-o 24dp} %1$s Connect with Email</string>
+    <string name="register">Register</string>
+    <string name="continueWithEmail">Continue with email</string>
+    <string name="checkYourInbox">Check your inbox!</string>
+    <string name="emailMagicLink">We have sent you a magic link to your email. Click on it sign-in!</string>
+    <string name="putYourName">Whats your full name?</string>
+    <string name="putYourAlias">Choose your alias</string>
     <string name="login_with_email">{fa-envelope-o 24dp} %1$s Sign up with Email</string>
 
     <!-- TODO: Remove or change this placeholder text -->
