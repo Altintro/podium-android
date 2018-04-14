@@ -49,10 +49,7 @@ class CreateFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() =
-                CreateFragment().apply {
 
-                }
+        fun newInstance(): CreateFragment = CreateFragment()
     }
 }

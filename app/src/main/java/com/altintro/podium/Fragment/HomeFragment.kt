@@ -53,11 +53,6 @@ class HomeFragment : Fragment() {
 
     companion object {
 
-        @JvmStatic
-        fun newInstance() =
-                HomeFragment().apply {
-                    arguments = Bundle().apply {
-                    }
-                }
+        fun newInstance(): HomeFragment = HomeFragment()
     }
 }
