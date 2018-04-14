@@ -1,4 +1,4 @@
-package com.altintro.podium.Activity
+package com.altintro.podium
 
 import android.app.Application
 import com.facebook.FacebookSdk

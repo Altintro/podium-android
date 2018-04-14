@@ -96,7 +96,7 @@ class RegisterActivity : AppCompatActivity() {
                         { result ->
                             Log.d("Result", result.toString())
                             if(result.toString().isNotEmpty()){
-                                router.goToHomeActivityFromRegister(this)
+                                router.goToMainActivityFromRegister(this)
                             }
                         },
                         { error ->

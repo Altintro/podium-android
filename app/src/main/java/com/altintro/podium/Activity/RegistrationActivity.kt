@@ -11,7 +11,7 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import kotlinx.android.synthetic.main.activity_registration.*
+import com.joanzapata.iconify.widget.IconButton
 import java.util.*
 
 class RegistrationActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration)
+        setContentView(R.layout.activity_register)
 
         prefs = this.getSharedPreferences(TAG, 0)
 
@@ -52,11 +52,15 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun setupComponents() {
 
-        btn_login_facebook.text = String.format(resources.getString(R.string.login_with_facebook), "    ");
-        btn_login_google.text = String.format(resources.getString(R.string.login_with_google), "  ");
-        btn_login_email.text = String.format(resources.getString(R.string.login_with_email), "  ");
+        val btnLoginFacebook = findViewById<IconButton>(R.id.btn_login_facebook)
+        val btnLoginGoogle = findViewById<IconButton>(R.id.btn_login_google)
+        val btnLoginEmail = findViewById<IconButton>(R.id.btn_login_email)
 
-        btn_login_facebook.setOnClickListener {
+        btnLoginFacebook.text = String.format(resources.getString(R.string.login_with_facebook), "    ");
+        btnLoginGoogle.text = String.format(resources.getString(R.string.login_with_google), "  ");
+        btnLoginEmail.text = String.format(resources.getString(R.string.login_with_email), "  ");
+
+        btnLoginFacebook.setOnClickListener {
             loginWithFacebook()
         }
     }
