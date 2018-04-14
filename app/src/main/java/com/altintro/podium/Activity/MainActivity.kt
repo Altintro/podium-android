@@ -1,13 +1,10 @@
 package com.altintro.podium.Activity
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import android.util.AttributeSet
-import android.view.View
 import com.altintro.podium.Fragment.CreateFragment
 import com.altintro.podium.Fragment.HomeFragment
 import com.altintro.podium.Fragment.ProfileFragment
