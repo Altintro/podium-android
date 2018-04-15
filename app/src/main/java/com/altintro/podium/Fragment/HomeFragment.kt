@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
                             val games:List<Game> = result.result
                             fillRecyclerViewWithGames(games)
                         }, { error ->
-                            Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
                         }
                 )
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -57,11 +57,11 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     fun fillRecyclerViewWithGames(games:List<Game>) {
 
         val viewColors = ArrayList<Int>()
-        viewColors.add(Color.BLUE)
-        viewColors.add(Color.YELLOW)
-        viewColors.add(Color.MAGENTA)
-        viewColors.add(Color.RED)
-        viewColors.add(Color.GREEN)
+        viewColors.add(Color.GRAY)
+        viewColors.add(Color.GRAY)
+        viewColors.add(Color.GRAY)
+        viewColors.add(Color.GRAY)
+        viewColors.add(Color.GRAY)
 
         val gameNames = ArrayList<String>()
         gameNames.add(games[0].name)
