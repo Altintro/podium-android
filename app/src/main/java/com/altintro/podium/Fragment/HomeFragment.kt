@@ -38,39 +38,55 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     private var gamesDisposable: Disposable? = null
     private var sportsDisposable: Disposable? = null
 
+    var gameItems: List<HomeRecyclerViewItem>? = null
+    var sportItems: List<HomeRecyclerViewItem>? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        //Get Games
-        gamesDisposable = wikiApiService.getGames()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                            val games:List<Game> = result.result
-                            val recyclerViewItems:List<HomeRecyclerViewItem> = games.map { HomeRecyclerViewItem(it)}
-                            val recyclerView = view!!.findViewById<RecyclerView>(R.id.rv_games)
-                            fillRecyclerViewWithItem(recyclerViewItems, recyclerView)
-                        }, { error ->
-                            Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                        }
-                )
-
-        //Get Sports
-        sportsDisposable = wikiApiService.getSports()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    val sports:List<Sport> = result.result
-                    val recyclerViewItems:List<HomeRecyclerViewItem> = sports.map { HomeRecyclerViewItem(it)}
-                    val recyclerView = view!!.findViewById<RecyclerView>(R.id.rv_sports)
-
-                    fillRecyclerViewWithItem(recyclerViewItems, recyclerView)
-                }, { error ->
-                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                }
-                )
-
         val homeView = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val gamesRecyclerView = homeView!!.findViewById<RecyclerView>(R.id.rv_games)
+
+        //Check if the games are already downloaded, so we dont load everytime the user changes a tab
+        //TODO: add pull to refresh
+        if (gameItems != null) {
+            fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
+        } else {
+            //Get Games
+            gamesDisposable = wikiApiService.getGames()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ result ->
+                        val games:List<Game> = result.result
+                        gameItems = games.map { HomeRecyclerViewItem(it)}
+                        gamesDisposable!!.dispose()
+                        fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
+                    }, { error ->
+                        Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
+                    })
+        }
+
+        val sportsRecyclerView = homeView.findViewById<RecyclerView>(R.id.rv_sports)
+
+        //Check if the sports are already downloaded, so we dont load everytime the user changes a tab
+        //TODO: add pull to refresh
+        if (sportItems != null) {
+            fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
+        } else {
+            //Get Sports
+            sportsDisposable = wikiApiService.getSports()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ result ->
+                        val sports: List<Sport> = result.result
+                        sportItems = sports.map { HomeRecyclerViewItem(it) }
+                        sportsDisposable!!.dispose()
+                        fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
+                    }, { error ->
+                        Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
+                    })
+        }
 
         return homeView
     }

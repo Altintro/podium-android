@@ -7,31 +7,31 @@
     <TextView
         android:id="@+id/recycler_view_games_title"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:textSize="17sp"
-        android:text="Featured Games"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_height="@dimen/recyclerViewList_title_height"
+        android:textSize="@dimen/font_medium"
+        android:text="@string/featured_games_title"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/small_margin"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_games"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="@dimen/recyclerViewList_height"
         android:layout_below="@id/recycler_view_games_title"/>
 
     <TextView
         android:id="@+id/recycler_view_sports_title"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:textSize="17sp"
-        android:text="Popular Sports"
+        android:layout_height="@dimen/recyclerViewList_title_height"
+        android:textSize="@dimen/font_medium"
+        android:text="@string/popular_sports_title"
         android:layout_below="@id/rv_games"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="@dimen/small_margin"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_sports"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="@dimen/recyclerViewList_height"
         android:layout_below="@id/recycler_view_sports_title"/>
 
 </RelativeLayout>

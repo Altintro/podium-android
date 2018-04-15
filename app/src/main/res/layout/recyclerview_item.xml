@@ -8,15 +8,14 @@
 
     <View
         android:id="@+id/itemView"
-        android:layout_width="125dp"
-        android:layout_height="125dp"/>
+        android:layout_width="@dimen/recyclerViewItem_width"
+        android:layout_height="@dimen/recyclerViewItem_height"/>
 
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_height="@dimen/recyclerViewItem_text_height"
+        android:textSize="@dimen/font_small"
+        android:layout_marginTop="@dimen/small_margin" />
 
 </LinearLayout>

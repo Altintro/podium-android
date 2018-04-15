@@ -13,6 +13,7 @@ import com.example.a630465.podium.R
 class MainActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
+    lateinit var homeFragment: HomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation:BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val homeFragment = HomeFragment.newInstance()
+        homeFragment = HomeFragment.newInstance()
         openFragment(homeFragment)
 
     }
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
                 toolbar.setTitle(getString(R.string.section_home_title))
 
-                val homeFragment = HomeFragment.newInstance()
                 openFragment(homeFragment)
                 return@OnNavigationItemSelectedListener true
             }
