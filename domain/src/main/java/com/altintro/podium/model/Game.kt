@@ -1,10 +1,11 @@
 package com.altintro.podium.model
 
+import com.google.gson.annotations.SerializedName
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 import java.util.*
 
-data class Game(val id: String,
+data class Game(@SerializedName("_id") val id: String,
                 val name: String,
                 val sport: List<Sport>,
                 val tournament: List<Tournament>,

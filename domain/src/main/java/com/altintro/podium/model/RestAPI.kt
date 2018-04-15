@@ -25,8 +25,7 @@ data class ResponseSearchUser(var success: Boolean,
 
 data class GameCreation(var name: String)
 
-data class ResponseSearchGame(var success: Boolean,
-                              var result: List<Game>) : Serializable
+data class ResponseSearchGame(var result: List<Game>) : Serializable
 
 //-----------------------------------Tournament-----------------------------------
 

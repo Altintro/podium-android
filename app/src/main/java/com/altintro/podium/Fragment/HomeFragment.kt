@@ -4,25 +4,43 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.altintro.podium.WikiApiService
+import com.altintro.podium.model.Game
 import com.example.a630465.podium.R
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import javax.xml.transform.Result
 
 
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val wikiApiService by lazy {
+        WikiApiService.create()
     }
+
+    private var disposable: Disposable? = null
+    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
+        //Get Games
+        disposable = wikiApiService.getGames()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                            val games:List<Game> = result.result
+                            Log.d("Games", "The downloaded games: " + games)
+                        }, { error ->
+                            Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
+                        }
+                )
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 

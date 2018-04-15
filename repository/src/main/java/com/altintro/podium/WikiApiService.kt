@@ -50,10 +50,7 @@ interface WikiApiService {
 
     //-----------------------------------Games-----------------------------------
     @GET("games")
-    fun getGame(@Header("x-access-token") token: String,
-                @Query("name") name: String,
-                @Query("limit") limit: String,
-                @Query("sort") sort: String): Observable<ResponseSearchGame>
+    fun getGames(): Observable<ResponseSearchGame>
 
     @GET("games/{id}")
     fun getGameDetail(@Header("x-access-token") token: String,
