@@ -48,18 +48,14 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
         val contentimage = itemView.findViewById<ImageView>(R.id.content_image)
         val contentTitle = itemView.findViewById<TextView>(R.id.content_title)
         val contentSubtitle = itemView.findViewById<TextView>(R.id.content_subtitle)
-        val genericCell = itemView.findViewById<ConstraintLayout>(R.id.generic_cell)
 
         fun bindShop(image: String, title: String, subTitle: String) {
 
-            // Si la imagen  no es vacía la muestro, si lo es oculto el ImageView y redefino las Constraints del título y el subtítulo
+            // Si la imagen  no es vacía la muestro, si lo es quito el ImageView de la vista
             if (image != "") {
                 Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
             } else {
-                contentimage.visibility = View.INVISIBLE
-                val constraintSet = ConstraintSet()
-                constraintSet.connect(contentTitle.id, ConstraintSet.LEFT, contentSubtitle.id , ConstraintSet.RIGHT, 0)
-                constraintSet.applyTo(genericCell)
+                contentimage.visibility = View.GONE
             }
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }
