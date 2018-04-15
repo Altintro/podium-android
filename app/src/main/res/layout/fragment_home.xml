@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/recycler_view_title"
+        android:id="@+id/recycler_view_games_title"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="17sp"
@@ -17,6 +17,21 @@
         android:id="@+id/rv_games"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:layout_below="@id/recycler_view_title"/>
+        android:layout_below="@id/recycler_view_games_title"/>
+
+    <TextView
+        android:id="@+id/recycler_view_sports_title"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textSize="17sp"
+        android:text="Popular Sports"
+        android:layout_below="@id/rv_games"
+        android:layout_marginLeft="10dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_sports"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_below="@id/recycler_view_sports_title"/>
 
 </RelativeLayout>

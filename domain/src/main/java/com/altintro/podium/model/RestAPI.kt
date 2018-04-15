@@ -27,6 +27,10 @@ data class GameCreation(var name: String)
 
 data class ResponseSearchGame(var result: List<Game>) : Serializable
 
+//-----------------------------------Sport-----------------------------------
+
+data class ResponseSearchSport(var result: List<Sport>) : Serializable
+
 //-----------------------------------Tournament-----------------------------------
 
 data class TournamentCreation(var name: String,

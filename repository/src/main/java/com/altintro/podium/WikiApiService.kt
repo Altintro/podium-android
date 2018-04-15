@@ -70,6 +70,10 @@ interface WikiApiService {
     fun deleteGame(@Header("x-access-token") token: String,
                    @Path("id") userId: String)
 
+    //-----------------------------------Sports-----------------------------------
+    @GET("sports")
+    fun getSports(): Observable<ResponseSearchSport>
+
 
     //-----------------------------------Tournaments-----------------------------------
     @GET("tournaments")

@@ -7,12 +7,12 @@
     android:padding="10dp">
 
     <View
-        android:id="@+id/colorView"
+        android:id="@+id/itemView"
         android:layout_width="125dp"
         android:layout_height="125dp"/>
 
     <TextView
-        android:id="@+id/tvAnimalName"
+        android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:textSize="14sp"

@@ -1,31 +1,31 @@
 package com.altintro.podium.Adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.altintro.podium.model.HomeRecyclerViewItem
 import com.example.a630465.podium.R
 import java.util.*
 
-class MyRecyclerViewAdapter(context: Context, colors: List<Int>, animals: List<String>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
 
 
-    var mViewColors: List<Int>
-    var mAnimals: List<String>
+    var mItems: List<HomeRecyclerViewItem>
     private val mInflater: LayoutInflater
     private var mClickListener: ItemClickListener? = null
 
 
     init {
         this.mInflater = LayoutInflater.from(context)
-        this.mViewColors = colors
-        this.mAnimals = animals
+        this.mItems = items
     }
 
     override fun getItemCount(): Int {
-        return mAnimals.count()
+        return mItems.count()
     }
 
     // inflates the row layout from xml when needed
@@ -36,10 +36,9 @@ class MyRecyclerViewAdapter(context: Context, colors: List<Int>, animals: List<S
 
     // binds the data to the view and textview in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val color = mViewColors.get(position)
-        val animal = mAnimals.get(position)
-        holder.myView.setBackgroundColor(color)
-        holder.myTextView.setText(animal)
+        val item = mItems.get(position)
+        holder.myView.setBackgroundColor(Color.GRAY)
+        holder.myTextView.setText(item.name)
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -49,8 +48,8 @@ class MyRecyclerViewAdapter(context: Context, colors: List<Int>, animals: List<S
         var myTextView: TextView
 
         init {
-            myView = itemView.findViewById(R.id.colorView)
-            myTextView = itemView.findViewById(R.id.tvAnimalName)
+            myView = itemView.findViewById(R.id.itemView)
+            myTextView = itemView.findViewById(R.id.itemName)
             itemView.setOnClickListener(this)
         }
 
@@ -60,8 +59,8 @@ class MyRecyclerViewAdapter(context: Context, colors: List<Int>, animals: List<S
     }
 
     // convenience method for getting data at click position
-    fun getItem(id: Int): String {
-        return mAnimals.get(id)
+    fun getItem(id: Int): HomeRecyclerViewItem {
+        return mItems.get(id)
     }
 
     // allows clicks events to be caught

@@ -7,7 +7,7 @@ import java.util.*
 
 data class Game(@SerializedName("_id") val id: String,
                 val name: String,
-                val sport: List<Sport>,
+                val sport: Sport?,
                 val tournament: List<Tournament>,
                 val participants: List<Team>,
                 val wins: Team,

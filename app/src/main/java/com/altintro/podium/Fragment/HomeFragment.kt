@@ -15,6 +15,8 @@ import android.widget.Toast
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.Game
+import com.altintro.podium.model.HomeRecyclerViewItem
+import com.altintro.podium.model.Sport
 import com.example.a630465.podium.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -24,7 +26,6 @@ import io.reactivex.schedulers.Schedulers
 class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
 
     companion object {
-
         fun newInstance(): HomeFragment = HomeFragment()
     }
 
@@ -34,71 +35,56 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
 
     lateinit var adapter: MyRecyclerViewAdapter
 
-    private var disposable: Disposable? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var gamesDisposable: Disposable? = null
+    private var sportsDisposable: Disposable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         //Get Games
-        disposable = wikiApiService.getGames()
+        gamesDisposable = wikiApiService.getGames()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                             val games:List<Game> = result.result
-                            fillRecyclerViewWithGames(games)
+                            val recyclerViewItems:List<HomeRecyclerViewItem> = games.map { HomeRecyclerViewItem(it)}
+                            val recyclerView = view!!.findViewById<RecyclerView>(R.id.rv_games)
+                            fillRecyclerViewWithItem(recyclerViewItems, recyclerView)
                         }, { error ->
                             Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
                         }
                 )
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+        //Get Sports
+        sportsDisposable = wikiApiService.getSports()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    val sports:List<Sport> = result.result
+                    val recyclerViewItems:List<HomeRecyclerViewItem> = sports.map { HomeRecyclerViewItem(it)}
+                    val recyclerView = view!!.findViewById<RecyclerView>(R.id.rv_sports)
+
+                    fillRecyclerViewWithItem(recyclerViewItems, recyclerView)
+                }, { error ->
+                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
+                }
+                )
+
+        val homeView = inflater.inflate(R.layout.fragment_home, container, false)
+
+        return homeView
     }
 
-    fun fillRecyclerViewWithGames(games:List<Game>) {
+    fun fillRecyclerViewWithItem(items:List<HomeRecyclerViewItem>, recyclerView: RecyclerView) {
 
-        val viewColors = ArrayList<Int>()
-        viewColors.add(Color.GRAY)
-        viewColors.add(Color.GRAY)
-        viewColors.add(Color.GRAY)
-        viewColors.add(Color.GRAY)
-        viewColors.add(Color.GRAY)
-
-        val gameNames = ArrayList<String>()
-        gameNames.add(games[0].name)
-        gameNames.add(games[1].name)
-        gameNames.add(games[2].name)
-        gameNames.add(games[3].name)
-        gameNames.add(games[4].name)
-
-        val recyclerView: RecyclerView = view!!.findViewById(R.id.rv_games)
         val horizontalLayoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = horizontalLayoutManager
-        adapter = MyRecyclerViewAdapter(activity!!, viewColors, gameNames)
+        adapter = MyRecyclerViewAdapter(activity!!, items)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
     }
 
     override fun onItemClick(view: View, position: Int) {
         Toast.makeText(activity,"You clicked: " + adapter.getItem(position) + "on item position", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-       /* if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }*/
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
     }
 }
