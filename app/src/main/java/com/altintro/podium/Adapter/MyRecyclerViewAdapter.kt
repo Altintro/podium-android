@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.altintro.podium.model.HomeRecyclerViewItem
 import com.example.a630465.podium.R
+import com.squareup.picasso.Picasso
 import java.util.*
 
 class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
@@ -38,17 +40,25 @@ class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mItems.get(position)
         holder.myView.setBackgroundColor(Color.GRAY)
+
+        //Load image with Picasso
+        if (item.imageUrl != "") {
+            Picasso.get().load(item.imageUrl)
+                    .placeholder(R.drawable.loading)
+                    .into(holder.myView)
+        }
+
         holder.myTextView.setText(item.name)
     }
 
     // stores and recycles views as they are scrolled off screen
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        var myView: View
+        var myView: ImageView
         var myTextView: TextView
 
         init {
-            myView = itemView.findViewById(R.id.itemView)
+            myView = itemView.findViewById(R.id.itemImageView)
             myTextView = itemView.findViewById(R.id.itemName)
             itemView.setOnClickListener(this)
         }

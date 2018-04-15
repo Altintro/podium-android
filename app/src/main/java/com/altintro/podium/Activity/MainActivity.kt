@@ -9,6 +9,7 @@ import com.altintro.podium.Fragment.CreateFragment
 import com.altintro.podium.Fragment.HomeFragment
 import com.altintro.podium.Fragment.ProfileFragment
 import com.example.a630465.podium.R
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         homeFragment = HomeFragment.newInstance()
         openFragment(homeFragment)
+
+        //Picasso setup
+        Picasso.get().isLoggingEnabled = true  //Get logs from Picasso
+        Picasso.get().setIndicatorsEnabled(false) //See if images are cached or not
 
     }
 

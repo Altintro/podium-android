@@ -6,10 +6,12 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <View
-        android:id="@+id/itemView"
+    <ImageView
+        android:id="@+id/itemImageView"
         android:layout_width="@dimen/recyclerViewItem_width"
-        android:layout_height="@dimen/recyclerViewItem_height"/>
+        android:layout_height="@dimen/recyclerViewItem_height"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/itemName"
