@@ -7,6 +7,7 @@ import com.joanzapata.iconify.Iconify
 import com.joanzapata.iconify.fonts.FontAwesomeModule
 import com.joanzapata.iconify.fonts.MaterialModule
 import com.joanzapata.iconify.fonts.TypiconsModule
+import com.squareup.picasso.Picasso
 
 class BaseApp: Application(){
 
@@ -19,5 +20,8 @@ class BaseApp: Application(){
         Iconify.with(FontAwesomeModule())
         Iconify.with(TypiconsModule())
         Iconify.with(MaterialModule())
+
+        Picasso.get().isLoggingEnabled = true
+        Picasso.get().setIndicatorsEnabled(false)
     }
 }

@@ -1,22 +1,22 @@
 package com.altintro.podium.Fragment
 
-import android.content.Context
-import android.graphics.Color
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.altintro.podium.Activity.MainActivity
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.WikiApiService
+import com.altintro.podium.activity.AuthenticationActivity
 import com.altintro.podium.model.Game
 import com.altintro.podium.model.HomeRecyclerViewItem
 import com.altintro.podium.model.Sport
+import com.altintro.podium.router.Router
 import com.example.a630465.podium.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -41,6 +41,8 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     var gameItems: List<HomeRecyclerViewItem>? = null
     var sportItems: List<HomeRecyclerViewItem>? = null
 
+    private val router: Router = Router()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -54,17 +56,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
             fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
         } else {
             //Get Games
-            gamesDisposable = wikiApiService.getGames()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result ->
-                        val games:List<Game> = result.result
-                        gameItems = games.map { HomeRecyclerViewItem(it)}
-                        gamesDisposable!!.dispose()
-                        fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
-                    }, { error ->
-                        Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                    })
+            getGames(gamesRecyclerView)
         }
 
         val sportsRecyclerView = homeView.findViewById<RecyclerView>(R.id.rv_sports)
@@ -75,20 +67,38 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
             fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
         } else {
             //Get Sports
-            sportsDisposable = wikiApiService.getSports()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result ->
-                        val sports: List<Sport> = result.result
-                        sportItems = sports.map { HomeRecyclerViewItem(it) }
-                        sportsDisposable!!.dispose()
-                        fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
-                    }, { error ->
-                        Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                    })
+            getSports(sportsRecyclerView)
         }
 
         return homeView
+    }
+
+    private fun getGames(gamesRecyclerView: RecyclerView) {
+        gamesDisposable = wikiApiService.getGames()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    val games: List<Game> = result.result
+                    gameItems = games.map { HomeRecyclerViewItem(it) }
+                    gamesDisposable!!.dispose()
+                    fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
+                }, { error ->
+                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
+                })
+    }
+
+    private fun getSports(sportsRecyclerView: RecyclerView) {
+        sportsDisposable = wikiApiService.getSports()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    val sports: List<Sport> = result.result
+                    sportItems = sports.map { HomeRecyclerViewItem(it) }
+                    sportsDisposable!!.dispose()
+                    fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
+                }, { error ->
+                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
+                })
     }
 
     fun fillRecyclerViewWithItem(items:List<HomeRecyclerViewItem>, recyclerView: RecyclerView) {
@@ -102,5 +112,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
 
     override fun onItemClick(view: View, position: Int) {
         Toast.makeText(activity,"You clicked: " + adapter.getItem(position) + "on item position", Toast.LENGTH_SHORT).show()
+        val intent = Intent(activity, AuthenticationActivity::class.java)
+        startActivity(intent)
     }
 }

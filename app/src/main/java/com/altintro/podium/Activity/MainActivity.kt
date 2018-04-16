@@ -20,20 +20,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupComponents()
+    }
+
+    private fun setupComponents() {
         toolbar = findViewById(R.id.my_toolbar)
         toolbar.setTitle(getString(R.string.section_home_title))
         setSupportActionBar(toolbar)
 
-        val bottomNavigation:BottomNavigationView = findViewById(R.id.navigationView)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         homeFragment = HomeFragment.newInstance()
         openFragment(homeFragment)
-
-        //Picasso setup
-        Picasso.get().isLoggingEnabled = true  //Get logs from Picasso
-        Picasso.get().setIndicatorsEnabled(false) //See if images are cached or not
-
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
