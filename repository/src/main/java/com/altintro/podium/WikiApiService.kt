@@ -20,8 +20,11 @@ interface WikiApiService {
     @POST("users/emailRegister")
     fun emailRegister(@Body userRegister: UserRegister): Observable<ResponseEmailConnect>
 
-    @GET("users/me")
-    fun meProfile(@Header("x-access-token") token: String): Observable<ResponseMeProfile>
+    @GET("users/tokens")
+    fun tokens(@Header("x-access-token") token: String): Observable<ResponseTokens>
+
+    @POST("users/refreshToken")
+    fun refreshToken(@Header("x-refresh-token") refreshToken: String): Observable<ResponseRefreshToken>
 
     @POST("users/login")
     fun login(@Body userRegister: UserRegister): Observable<ResponseAuth>

@@ -8,9 +8,12 @@ data class ResponseAuth(val auth: Boolean,
 
 data class ResponseEmailConnect(val auth: Boolean) : Serializable
 
-data class ResponseMeProfile(val fb: Facebook,
-                             val google: Google,
-                             val user: User)
+data class ResponseTokens(val auth: Boolean,
+                             val accessToken: String,
+                             val refreshToken: String)
+
+data class ResponseRefreshToken(val auth: Boolean,
+                                val accessToken: String)
 
 //-----------------------------------User-----------------------------------
 

@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupComponents() {
-        toolbar = findViewById(R.id.my_toolbar)
-        toolbar.setTitle(getString(R.string.section_home_title))
-        setSupportActionBar(toolbar)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

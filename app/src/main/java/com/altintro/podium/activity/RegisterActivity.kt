@@ -89,15 +89,37 @@ class RegisterActivity : AppCompatActivity() {
         val token = url.toString().substringAfterLast("?").substringAfterLast("token=")
         prefs.edit().putString("token", token).apply()
 
-        disposable = wikiApiService.meProfile(token)
+        disposable = wikiApiService.tokens(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { result ->
                             Log.d("Result", result.toString())
-                            if(result.toString().isNotEmpty()){
-                                router.goToMainActivityFromRegister(this)
+                            if(result.auth == true){
+                                refreshToken(result.refreshToken)
                             }
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+                        }
+                )
+
+    }
+
+    private fun refreshToken(refreshToken: String) {
+        disposable = wikiApiService.refreshToken(refreshToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            Log.d("Result", result.toString())
+                            if(result.auth == true){
+                                prefs.edit().putString("token", result.accessToken).apply()
+                                router.goToMainActivityFromRegister(this)
+                            }else{
+                                Toast.makeText(this, "Access denied", Toast.LENGTH_LONG).show()
+                            }
+
                         },
                         { error ->
                             Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
