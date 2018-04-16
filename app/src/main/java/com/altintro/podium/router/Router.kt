@@ -1,8 +1,8 @@
 package com.altintro.podium.router
 
 import android.content.Intent
+import com.altintro.podium.Activity.MainActivity
 import com.altintro.podium.activity.AuthenticationActivity
-import com.altintro.podium.activity.HomeActivity
 import com.altintro.podium.activity.RegisterActivity
 import com.altintro.podium.utils.*
 
@@ -21,12 +21,12 @@ class Router {
         activity.startActivity(Intent(activity, RegisterActivity::class.java).putExtra(INTENT_ACTION, CONNECT_WITH_GOOGLE_NEW_USER))
     }
 
-    fun goToHomeActivityFromAuthentication(activity: AuthenticationActivity) {
-        activity.startActivity(Intent(activity, HomeActivity::class.java))
+    fun goToMainActivityFromAuthentication(activity: AuthenticationActivity) {
+        activity.startActivity(Intent(activity, MainActivity::class.java))
     }
 
-    fun goToHomeActivityFromRegister(activity: RegisterActivity) {
-        activity.startActivity(Intent(activity, HomeActivity::class.java))
+    fun goToMainActivityFromRegister(activity: RegisterActivity) {
+        activity.startActivity(Intent(activity, MainActivity::class.java))
     }
 
 }

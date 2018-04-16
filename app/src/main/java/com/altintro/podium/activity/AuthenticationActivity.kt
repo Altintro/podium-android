@@ -2,14 +2,18 @@ package com.altintro.podium.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.drawable.Icon
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.altintro.podium.Activity.MainActivity
 import com.altintro.podium.router.Router
 import com.example.a630465.podium.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.joanzapata.iconify.widget.IconButton
 import kotlinx.android.synthetic.main.activity_authentication.*
 import java.util.*
 import org.json.JSONObject
@@ -36,15 +40,19 @@ class AuthenticationActivity : AppCompatActivity() {
 
     private fun setupComponents() {
 
-        btn_login_facebook.text = String.format(resources.getString(R.string.login_with_facebook), "    ");
-        btn_login_google.text = String.format(resources.getString(R.string.login_with_google), "  ");
-        btn_login_email.text = String.format(resources.getString(R.string.login_with_email), "  ");
+        val btnLoginFacebook = findViewById<IconButton>(R.id.btn_login_facebook)
+        val btnLoginGoogle = findViewById<IconButton>(R.id.btn_login_google)
+        val btnLoginEmail = findViewById<IconButton>(R.id.btn_login_email)
 
-        btn_login_facebook.setOnClickListener {
+        btnLoginFacebook.text = String.format(resources.getString(R.string.login_with_facebook), "    ");
+        btnLoginGoogle.text = String.format(resources.getString(R.string.login_with_google), "  ");
+        btnLoginEmail.text = String.format(resources.getString(R.string.login_with_email), "  ");
+
+        btnLoginFacebook.setOnClickListener {
             connectWithFacebook()
         }
 
-        btn_login_email.setOnClickListener  {
+        btnLoginEmail.setOnClickListener  {
             connectWithEmail()
         }
     }
@@ -65,7 +73,7 @@ class AuthenticationActivity : AppCompatActivity() {
                 })
 
                 request.executeAsync()
-                startActivity(Intent(applicationContext, HomeActivity::class.java))
+                startActivity(Intent(applicationContext, MainActivity::class.java))
             }
 
             override fun onCancel() {

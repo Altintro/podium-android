@@ -1,9 +1,10 @@
 package com.altintro.podium.model
 
+import com.google.gson.annotations.SerializedName
 import com.keepcoding.madridshops.domain.model.Aggregate
 import java.io.Serializable
 
-data class Sport(val id: String,
+data class Sport(@SerializedName("_id") val id: String,
                  val name: String,
                  val image: String,
                  val description: String,

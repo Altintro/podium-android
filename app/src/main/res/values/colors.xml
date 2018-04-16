@@ -6,5 +6,6 @@
     <color name="btn_google">#CF4332</color>
     <color name="btn_email">#9B9B9B</color>
     <color name="view_login">#4A4A4A</color>
+    <color name="white">#FFFFFF</color>
     <color name="gray_background">#EFEFEF</color>
 </resources>
