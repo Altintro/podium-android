@@ -13,7 +13,6 @@ import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var toolbar: Toolbar
     lateinit var homeFragment: HomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,22 +37,16 @@ class MainActivity : AppCompatActivity() {
 
             R.id.navigation_home -> {
 
-                toolbar.setTitle(getString(R.string.section_home_title))
-
                 openFragment(homeFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_create -> {
-
-                toolbar.setTitle(getString(R.string.section_create_title))
 
                 val createFragment = CreateFragment.newInstance()
                 openFragment(createFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-
-                toolbar.setTitle(getString(R.string.section_profile_title))
 
                 val profileFragment = ProfileFragment.newInstance()
                 openFragment(profileFragment)

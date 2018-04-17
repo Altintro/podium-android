@@ -29,7 +29,6 @@ class RegisterActivity : AppCompatActivity() {
     private var email: String = ""
     private var name: String = ""
     private var alias: String = ""
-    private lateinit var url: Uri
     private lateinit var prefs: SharedPreferences
     private val router: Router = Router()
     private val TAG = AuthenticationActivity::class.qualifiedName
@@ -41,6 +40,7 @@ class RegisterActivity : AppCompatActivity() {
 
         prefs = this.getSharedPreferences(TAG, 0)
         val action = getIntent().action
+        val url = intent.data
 
         if(action == INTENT_MAGIC_LINK){
             checkLogin(url)
