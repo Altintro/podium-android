@@ -2,22 +2,23 @@ package com.altintro.podium.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.drawable.Icon
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import com.altintro.podium.Activity.MainActivity
+import android.widget.Toast
+import com.altintro.podium.WikiApiService
+import com.altintro.podium.model.SignInType
 import com.altintro.podium.router.Router
 import com.example.a630465.podium.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.joanzapata.iconify.widget.IconButton
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authentication.*
 import java.util.*
-import org.json.JSONObject
-import org.json.JSONException
 
 
 class AuthenticationActivity : AppCompatActivity() {
@@ -27,6 +28,11 @@ class AuthenticationActivity : AppCompatActivity() {
     private val router: Router = Router()
     private lateinit var prefs: SharedPreferences
 
+    private val wikiApiService by lazy {
+        WikiApiService.create()
+    }
+
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,17 +69,7 @@ class AuthenticationActivity : AppCompatActivity() {
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
                 val accessToken = result.accessToken
-
-                val request = GraphRequest.newMeRequest(accessToken, GraphRequest.GraphJSONObjectCallback { obj: JSONObject, response: GraphResponse ->
-                    try{
-                        Log.d(TAG, "Facebook data" + obj.toString())
-                    } catch (e: JSONException){
-                        e.printStackTrace()
-                    }
-                })
-
-                request.executeAsync()
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+                checkTokenFacebook(accessToken.token)
             }
 
             override fun onCancel() {
@@ -85,6 +81,26 @@ class AuthenticationActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun checkTokenFacebook(accessToken: String){
+        disposable = wikiApiService.facebookConnect(accessToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            Log.d("Result", result.toString())
+                            if(result.auth == true && result.type.equals(SignInType.signin.name)){
+                                prefs.edit().putString("token", result.accessToken).apply()
+                                router.goToMainActivityFromAuthentication(this)
+                            }else if(result.auth == true && result.type.equals(SignInType.signup.name)){
+                                router.goToRegisterActivityWithFacebook(this)
+                            }
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+                        }
+                )
     }
 
 

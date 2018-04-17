@@ -23,11 +23,16 @@ interface WikiApiService {
     @GET("users/tokens")
     fun tokens(@Header("x-access-token") token: String): Observable<ResponseTokens>
 
+    @POST("users/facebookConnect")
+    fun facebookConnect(@Query("fbToken") fbToken: String): Observable<ResponseTokens>
+
     @POST("users/refreshToken")
     fun refreshToken(@Header("x-refresh-token") refreshToken: String): Observable<ResponseRefreshToken>
 
     @POST("users/login")
     fun login(@Body userRegister: UserRegister): Observable<ResponseAuth>
+
+
 
     //-----------------------------------User-----------------------------------
     @GET("users")

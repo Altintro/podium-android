@@ -13,15 +13,13 @@ class Router {
         activity.startActivity(Intent(activity, RegisterActivity::class.java).putExtra(INTENT_ACTION, CONNECT_WITH_EMAIL))
     }
 
-    fun goToAuthenticationFromMain(activity: MainActivity) {
-        activity.startActivity(Intent(activity, AuthenticationActivity::class.java))
-    }
-
     fun goToMainActivityFromRegister(activity: RegisterActivity) {
         activity.startActivity(Intent(activity, MainActivity::class.java))
     }
 
-    //-------------------------------------------------------------------------------------------
+    fun goToMainActivityFromAuthentication(activity: AuthenticationActivity) {
+        activity.startActivity(Intent(activity, MainActivity::class.java))
+    }
 
     fun goToRegisterActivityWithFacebook(activity: AuthenticationActivity) {
         activity.startActivity(Intent(activity, RegisterActivity::class.java).putExtra(INTENT_ACTION, CONNECT_WITH_FACEBOOK_NEW_USER))
@@ -31,8 +29,6 @@ class Router {
         activity.startActivity(Intent(activity, RegisterActivity::class.java).putExtra(INTENT_ACTION, CONNECT_WITH_GOOGLE_NEW_USER))
     }
 
-    fun goToMainActivityFromAuthentication(activity: AuthenticationActivity) {
-        activity.startActivity(Intent(activity, MainActivity::class.java))
-    }
+
 
 }

@@ -111,7 +111,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     }
 
     override fun onItemClick(view: View, position: Int) {
-        Toast.makeText(activity,"You clicked: " + adapter.getItem(position) + "on item position", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity,"You clicked: " + adapter.getItem(position) + "on item position", Toast.LENGTH_SHORT).show()
         val intent = Intent(activity, AuthenticationActivity::class.java)
         startActivity(intent)
     }

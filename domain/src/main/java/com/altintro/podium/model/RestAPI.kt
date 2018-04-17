@@ -9,8 +9,9 @@ data class ResponseAuth(val auth: Boolean,
 data class ResponseEmailConnect(val auth: Boolean) : Serializable
 
 data class ResponseTokens(val auth: Boolean,
-                             val accessToken: String,
-                             val refreshToken: String)
+                          val type: String,
+                          val accessToken: String,
+                          val refreshToken: String)
 
 data class ResponseRefreshToken(val auth: Boolean,
                                 val accessToken: String)

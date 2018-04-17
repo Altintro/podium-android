@@ -29,9 +29,11 @@ class RegisterActivity : AppCompatActivity() {
     private var email: String = ""
     private var name: String = ""
     private var alias: String = ""
+    private lateinit var url: Uri
     private lateinit var prefs: SharedPreferences
     private val router: Router = Router()
     private val TAG = AuthenticationActivity::class.qualifiedName
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,6 @@ class RegisterActivity : AppCompatActivity() {
 
         prefs = this.getSharedPreferences(TAG, 0)
         val action = getIntent().action
-        val url = intent.data
 
         if(action == INTENT_MAGIC_LINK){
             checkLogin(url)
@@ -83,11 +84,24 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun prepareRegisterViewFromEmail() {
+        loader_indicator.visibility = View.GONE
+        container_register.visibility = View.VISIBLE
+        tv_fullName.visibility = View.VISIBLE
+        itl_fullName.visibility = View.VISIBLE
+    }
+
+    private fun prepareMessageMagicLinkView() {
+        loader_indicator.visibility = View.GONE
+        container_register.visibility = View.GONE
+        container_message.visibility = View.VISIBLE
+    }
+
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
 
     private fun checkLogin(url: Uri?) {
         val token = url.toString().substringAfterLast("?").substringAfterLast("token=")
-        prefs.edit().putString("token", token).apply()
 
         disposable = wikiApiService.tokens(token)
                 .subscribeOn(Schedulers.io())
@@ -96,30 +110,9 @@ class RegisterActivity : AppCompatActivity() {
                         { result ->
                             Log.d("Result", result.toString())
                             if(result.auth == true){
-                                refreshToken(result.refreshToken)
-                            }
-                        },
-                        { error ->
-                            Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
-                        }
-                )
-
-    }
-
-    private fun refreshToken(refreshToken: String) {
-        disposable = wikiApiService.refreshToken(refreshToken)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { result ->
-                            Log.d("Result", result.toString())
-                            if(result.auth == true){
                                 prefs.edit().putString("token", result.accessToken).apply()
                                 router.goToMainActivityFromRegister(this)
-                            }else{
-                                Toast.makeText(this, "Access denied", Toast.LENGTH_LONG).show()
                             }
-
                         },
                         { error ->
                             Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
@@ -168,17 +161,26 @@ class RegisterActivity : AppCompatActivity() {
                 )
     }
 
-    private fun prepareRegisterViewFromEmail() {
-        loader_indicator.visibility = View.GONE
-        container_register.visibility = View.VISIBLE
-        tv_fullName.visibility = View.VISIBLE
-        itl_fullName.visibility = View.VISIBLE
-    }
 
-    private fun prepareMessageMagicLinkView() {
-        loader_indicator.visibility = View.GONE
-        container_register.visibility = View.GONE
-        container_message.visibility = View.VISIBLE
+    private fun refreshToken(refreshToken: String) {
+        disposable = wikiApiService.refreshToken(refreshToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            Log.d("Result", result.toString())
+                            if(result.auth == true){
+                                prefs.edit().putString("token", result.accessToken).apply()
+                            }else{
+                                Toast.makeText(this, "Access denied", Toast.LENGTH_LONG).show()
+                            }
+
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+                        }
+                )
+
     }
 
 }
