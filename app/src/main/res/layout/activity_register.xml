@@ -67,26 +67,21 @@
             android:textSize="@dimen/text_button_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itl_email" />
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/itl_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:singleLine="true"/>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/it_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center" />
-
-        </android.support.design.widget.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>
 
@@ -140,10 +135,11 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/container_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="357dp"
+        android:layout_height="280dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:descendantFocusability="beforeDescendants"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,59 +153,55 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/putYourName"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/itl_fullName"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/et_fullName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fullName"
-            android:visibility="gone">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/it_fullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center" />
-        </android.support.design.widget.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/tv_fullName" />
 
         <TextView
             android:id="@+id/tv_alias"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/putYourAlias"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itl_fullName" />
+            app:layout_constraintTop_toBottomOf="@+id/et_fullName" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/itl_alias"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/et_alias"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@id/tv_alias"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_alias">
+            app:layout_constraintTop_toBottomOf="@+id/tv_alias" />
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/it_alias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"/>
-        </android.support.design.widget.TextInputLayout>
 
         <com.joanzapata.iconify.widget.IconButton
             android:id="@+id/btn_register"
@@ -220,13 +212,14 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/btn_login_email"
             android:fontFamily="@string/com_facebook_loginview_log_in_button"
+            android:text="@string/register"
             android:textAlignment="center"
             android:textColor="@color/com_facebook_button_text_color"
             android:textSize="@dimen/text_button_login"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itl_alias"
-            android:text="@string/register"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_alias" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -81,5 +81,4 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_login_google" />
 
 
-
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.altintro.podium.activity
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -16,7 +17,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
-import java.util.regex.Pattern
+import android.view.inputmethod.InputMethodManager
+
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -38,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        prefs = this.getSharedPreferences(TAG, 0)
+        prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
         val action = getIntent().action
         val url = intent.data
 
@@ -52,11 +54,18 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupComponents() {
 
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+
         btn_continue_with_email.setOnClickListener{
-            if(Utils().isEmailValid(it_email.text.toString())){
+            if(Utils().isEmailValid(et_email.text.toString())){
+                val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+                imm.hideSoftInputFromWindow(this.currentFocus.windowToken, 0)
                 container_inputEmail.visibility = View.GONE
                 loader_indicator.visibility = View.VISIBLE
-                email = it_email.text.toString()
+                email = et_email.text.toString()
                 sendEmailConnect(email)
             }else{
                 //Toast Error o cambiar color del input
@@ -64,8 +73,8 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btn_register.setOnClickListener{
-            name = it_fullName.text.toString()
-            alias = it_alias.text.toString()
+            name = et_fullName.text.toString()
+            alias = et_alias.text.toString()
             val userRegister = UserRegister(name,alias,email)
             registerUser(userRegister)
         }
@@ -88,8 +97,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun prepareRegisterViewFromEmail() {
         loader_indicator.visibility = View.GONE
         container_register.visibility = View.VISIBLE
-        tv_fullName.visibility = View.VISIBLE
-        itl_fullName.visibility = View.VISIBLE
     }
 
     private fun prepareMessageMagicLinkView() {
@@ -112,6 +119,7 @@ class RegisterActivity : AppCompatActivity() {
                             if(result.auth == true){
                                 prefs.edit().putString("token", result.accessToken).apply()
                                 router.goToMainActivityFromRegister(this)
+                                finish()
                             }
                         },
                         { error ->

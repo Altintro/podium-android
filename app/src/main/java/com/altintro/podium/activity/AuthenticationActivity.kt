@@ -1,5 +1,6 @@
 package com.altintro.podium.activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.widget.Toast
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.SignInType
 import com.altintro.podium.router.Router
+import com.altintro.podium.utils.PREFERENCES
 import com.example.a630465.podium.R
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -38,7 +40,7 @@ class AuthenticationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
-        prefs = this.getSharedPreferences(TAG, 0)
+        prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
         initializeFacebookData()
         setupComponents()
@@ -93,8 +95,10 @@ class AuthenticationActivity : AppCompatActivity() {
                             if(result.auth == true && result.type.equals(SignInType.signin.name)){
                                 prefs.edit().putString("token", result.accessToken).apply()
                                 router.goToMainActivityFromAuthentication(this)
+                                finish()
                             }else if(result.auth == true && result.type.equals(SignInType.signup.name)){
                                 router.goToRegisterActivityWithFacebook(this)
+                                finish()
                             }
                         },
                         { error ->
