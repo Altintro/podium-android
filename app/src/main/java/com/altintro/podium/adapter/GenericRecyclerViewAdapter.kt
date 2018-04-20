@@ -53,7 +53,8 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
 
             // Si la imagen  no es vacía la muestro, si lo es quito el ImageView de la vista
             if (image != "") {
-                Picasso.with(context).load(image).placeholder(android.R.drawable.alert_dark_frame).into(contentimage)
+                Picasso.get().load(image).placeholder(R.drawable.loading).into(contentimage)
+
             } else {
                 contentimage.visibility = View.GONE
             }

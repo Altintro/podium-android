@@ -44,7 +44,8 @@ class GenericFragmentDetailHeader <T: Listable>: Fragment() {
             textTitle = fragmentView.findViewById(R.id.text_title)
             textSubTitle = fragmentView.findViewById(R.id.text_sub_title)
 
-            Picasso.with(activity).load(content.get_Image()).placeholder(android.R.drawable.alert_dark_frame).into(image)
+            Picasso.get().load(content.get_Image()).placeholder(R.drawable.loading).into(image)
+
             textTitle.text = content.getTitle()
             textSubTitle.text = content.getSubtitle()
         }

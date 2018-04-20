@@ -1,8 +1,9 @@
 package com.altintro.podium.model
 
-import java.io.Serializable
+import com.google.gson.annotations.SerializedName
 
-data class Sport(val id: String,
+
+data class Sport(@SerializedName("_id") val id: String,
                  val name: String,
                  val image: String,
                  val description: String = "",

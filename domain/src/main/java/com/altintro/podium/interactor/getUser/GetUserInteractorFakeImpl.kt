@@ -23,20 +23,23 @@ class GetUserInteractorFakeImpl : GetUserInteractor {
     fun loadFakeUser(userId: String): User {
 
         val user = User(
-                id = userId,
-                name = "John Doe",
-                profilePic = "https://i.stack.imgur.com/Lkn5a.png?s=328&g=1",
-                alias = "Jhonny",
-                gender = Gender.Male,
-                birthdate = "01/01/1981",
-                latitude = 40.416775f,    // Madrid latitude
-                longitude =  -3.703790f,   // Madrid longitude
-                email = "a@b.c",
-                interests = fakeSports(7, "Sport #"),
-                gamesPlayed = fakeGames(15, "Played game #"),
-                gamesWon = ArrayList<Game>(),
-                gamesUpcoming = fakeGames(6, "Next game #"),
-                gamesPlaying = fakeGames(2, "Playing game #")
+                        id = userId,
+                        name = "John Doe",
+                        profilePic = "https://i.stack.imgur.com/Lkn5a.png?s=328&g=1",
+                        alias = "Jhonny",
+                        gender = Gender.Male,
+                        birthdate = "01/01/1981",
+                        latitude = 40.416775f,    // Madrid latitude
+                        longitude =  -3.703790f,   // Madrid longitude
+                        email = "a@b.c",
+                        interests = fakeSports(7, "Sport #"),
+                        gamesPlayed = fakeGames(15, "Played game #"),
+                        gamesWon = ArrayList<Game>(),
+                        gamesUpcoming = fakeGames(6, "Next game #"),
+                        gamesPlaying = fakeGames(2, "Playing game #"),
+                        mergedWithGoogle = false,
+                        mergedWithFb = false,
+                        hasPassword = false
         )
 
         return user

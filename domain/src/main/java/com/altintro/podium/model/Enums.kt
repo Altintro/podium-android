@@ -28,3 +28,8 @@ enum class Gender {
     Male,
     Female
 }
+
+enum class SignInType {
+    signin,
+    signup
+}

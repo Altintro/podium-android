@@ -1,20 +1,19 @@
 package com.altintro.podium.model
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 data class User(@SerializedName("_id") val id: String,
                 val name: String,
                 val profilePic: String,
                 val alias: String,
+                val pass: String = "",
                 val gender: Gender,
-                val birthdate: String,
-                val latitude: Float,
-                val longitude: Float,
-                val email: String,
+                val birthdate: String = "",
+                val latitude: Float = 0f,
+                val longitude: Float = 0f,
+                val email: String = "",
                 val ranking: List<UserRanking>? = null,
                 val interests: Sports? = null,
-                val emblems: List<Emblem>? = null,
                 val tournamentsPlayed: List<Tournament>? = null,
                 val tournamentsPlaying: List<Tournament>? = null,
                 val tournamentsUpcoming: List<Tournament>? = null,
@@ -23,9 +22,9 @@ data class User(@SerializedName("_id") val id: String,
                 val gamesPlaying: Games? = null,
                 val gamesUpcoming: Games? = null,
                 val gamesWon: List<Game>? = null,
-                val fb: Facebook? = null,
-                val hasPassword: Boolean? = false,
-                val mergedWithFb: Boolean? = false) : Listable {
+                val mergedWithGoogle: Boolean,
+                val hasPassword: Boolean,
+                val mergedWithFb: Boolean) : Listable {
 
     override fun get_Image(): String {
         return profilePic
@@ -47,6 +46,7 @@ data class User(@SerializedName("_id") val id: String,
     }
 
 }
+
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size

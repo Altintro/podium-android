@@ -1,37 +1,69 @@
-package com.altIntro.podium
+package com.altintro.podium.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.altintro.podium.activity.UserProfileActivity
-import com.altintro.podium.interactor.ErrorCompletion
-import com.altintro.podium.interactor.SuccessCompletion
-import com.altintro.podium.interactor.getUser.GetUserInteractor
-import com.altintro.podium.interactor.getUser.GetUserInteractorFakeImpl
-import com.altintro.podium.model.User
-import kotlinx.android.synthetic.main.activity_main.*
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v7.widget.Toolbar
+import com.altintro.podium.Fragment.CreateFragment
+import com.altintro.podium.Fragment.HomeFragment
+import com.altintro.podium.Fragment.ProfileFragment
+import com.altIntro.podium.R
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var homeFragment: HomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        lateinit var userToShow: User
+        setupComponents()
+    }
 
-        val getUserInteractor : GetUserInteractor = GetUserInteractorFakeImpl()
-        getUserInteractor.execute(userId = "a1b2c3d4", success = object : SuccessCompletion<User> {
-            override fun successCompletion(data: User) {
-                userToShow = data
+    private fun setupComponents() {
+
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        homeFragment = HomeFragment.newInstance()
+        openFragment(homeFragment)
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+        when (item.itemId) {
+
+            R.id.navigation_home -> {
+
+                openFragment(homeFragment)
+                return@OnNavigationItemSelectedListener true
             }
-        }, error = object : ErrorCompletion {
-            override fun errorCompletion(errorMessage: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            R.id.navigation_create -> {
+
+                val createFragment = CreateFragment.newInstance()
+                openFragment(createFragment)
+                return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_profile -> {
 
-        })
-
-        button.setOnClickListener {
-            startActivity(UserProfileActivity.intent(this, userToShow))
+                val profileFragment = ProfileFragment.newInstance()
+                openFragment(profileFragment)
+                return@OnNavigationItemSelectedListener true
+            }
         }
+        false
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
