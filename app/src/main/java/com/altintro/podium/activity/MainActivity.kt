@@ -1,14 +1,19 @@
 package com.altintro.podium.Activity
 
+import android.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
 import com.altintro.podium.Fragment.CreateFragment
 import com.altintro.podium.Fragment.HomeFragment
-import com.altintro.podium.Fragment.ProfileFragment
+import com.altintro.podium.fragment.ProfileFragment
 import com.altIntro.podium.R
+import com.altintro.podium.interactor.ErrorCompletion
+import com.altintro.podium.interactor.SuccessCompletion
+import com.altintro.podium.interactor.getUser.GetUserInteractor
+import com.altintro.podium.interactor.getUser.GetUserInteractorFakeImpl
+import com.altintro.podium.model.User
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -48,8 +53,22 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_profile -> {
 
-                val profileFragment = ProfileFragment.newInstance()
-                openFragment(profileFragment)
+                lateinit var loggedUser: User
+
+                // ToDo: Now, user logged in the app is obtained using FakeImplementation of GetUserInteractor
+                val getUserInteractor : GetUserInteractor = GetUserInteractorFakeImpl()
+                getUserInteractor.execute(userId = "a1b2c3d4", success = object : SuccessCompletion<User> {
+                    override fun successCompletion(data: User) {
+                        loggedUser = data
+                        val profileFragment = ProfileFragment.newInstance(loggedUser)
+                        openFragment(profileFragment)
+                    }
+                }, error = object : ErrorCompletion {
+                    override fun errorCompletion(errorMessage: String) {
+                    }
+
+                })
+
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -57,10 +76,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+
+        fragmentManager.beginTransaction().
+        replace(R.id.container, fragment).
+        addToBackStack(null).commit()
     }
 
     override fun onBackPressed() {
