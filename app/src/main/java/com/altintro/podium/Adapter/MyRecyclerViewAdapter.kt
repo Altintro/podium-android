@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.altIntro.podium.R
 import com.altintro.podium.model.HomeRecyclerViewItem
-import com.example.a630465.podium.R
 import com.squareup.picasso.Picasso
 import java.util.*
 

@@ -1,16 +1,18 @@
 package com.altintro.podium.Fragment
 
+import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.altIntro.podium.R
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.activity.AuthenticationActivity
@@ -18,7 +20,6 @@ import com.altintro.podium.model.Game
 import com.altintro.podium.model.HomeRecyclerViewItem
 import com.altintro.podium.model.Sport
 import com.altintro.podium.utils.PREFERENCES
-import com.example.a630465.podium.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

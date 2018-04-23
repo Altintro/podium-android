@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.altIntro.podium.R
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.SignInType
 import com.altintro.podium.router.Router
 import com.altintro.podium.utils.PREFERENCES
-import com.example.a630465.podium.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -21,7 +21,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authentication.*
 import java.util.*
-
 
 class AuthenticationActivity : AppCompatActivity() {
 

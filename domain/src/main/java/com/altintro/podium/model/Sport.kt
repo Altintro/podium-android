@@ -1,20 +1,32 @@
 package com.altintro.podium.model
 
 import com.google.gson.annotations.SerializedName
-import com.keepcoding.madridshops.domain.model.Aggregate
-import java.io.Serializable
+
 
 data class Sport(@SerializedName("_id") val id: String,
                  val name: String,
                  val image: String,
-                 val description: String,
-                 val rules: String,
-                 val popularity: Float,
-                 val activeTournaments: List<Tournament>,
-                 val openTournaments: List<Tournament>,
-                 val activeGames: List<Game>,
-                 val openGames: List<Game>,
-                 val ranking: List<User>) : Serializable
+                 val description: String = "",
+                 val rules: String= "",
+                 val popularity: Float = 0f,
+                 val activeTournaments: List<Tournament> = ArrayList<Tournament>(),
+                 val openTournaments: List<Tournament>  = ArrayList<Tournament>(),
+                 val activeGames: List<Game> = ArrayList<Game>(),
+                 val openGames: List<Game> = ArrayList<Game>(),
+                 val ranking: List<User> = ArrayList<User>()) : Listable {
+
+    override fun get_Image(): String {
+        return image
+    }
+
+    override fun getTitle(): String {
+        return name
+    }
+
+    override fun getSubtitle(): String {
+        return ""
+    }
+}
 
 class Sports (val sports: MutableList<Sport>): Aggregate<Sport> {
     override fun count(): Int = sports.size
