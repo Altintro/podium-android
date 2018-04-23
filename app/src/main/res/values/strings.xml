@@ -20,4 +20,6 @@
     <string name="section_profile_title">Profile</string>
     <string name="featured_games_title">Featured Games</string>
     <string name="popular_sports_title">Popular Sports</string>
+    <string name="upcoming_game_title">Upcoming games</string>
+
 </resources>

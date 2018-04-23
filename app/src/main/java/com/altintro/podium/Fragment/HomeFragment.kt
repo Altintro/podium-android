@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -37,15 +38,13 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     private lateinit var adapter: MyRecyclerViewAdapter
     private lateinit var prefs: SharedPreferences
     private val TAG = HomeFragment::class.qualifiedName
+    private lateinit var layourManager: GridLayoutManager
 
     private var gamesDisposable: Disposable? = null
-    private var sportsDisposable: Disposable? = null
 
-    var gameItems: List<HomeRecyclerViewItem>? = null
-    var sportItems: List<HomeRecyclerViewItem>? = null
+    var gameItems: List<Game>? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         prefs = this.activity!!.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
@@ -64,28 +63,16 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
         if (gameItems != null) {
             fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
         } else {
-            //Get Games
             getGames(gamesRecyclerView)
-        }
-
-        val sportsRecyclerView = homeView.findViewById<RecyclerView>(R.id.rv_sports)
-
-        //Check if the sports are already downloaded, so we dont load everytime the user changes a tab
-        //TODO: add pull to refresh
-        if (sportItems != null) {
-            fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
-        } else {
-            //Get Sports
-            getSports(sportsRecyclerView)
         }
         return homeView
     }
 
 
-    fun fillRecyclerViewWithItem(items:List<HomeRecyclerViewItem>, recyclerView: RecyclerView) {
+    fun fillRecyclerViewWithItem(items:List<Game>, recyclerView: RecyclerView) {
 
-        val horizontalLayoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = horizontalLayoutManager
+        val gridLayourManager = GridLayoutManager(this.context,2)
+        recyclerView.layoutManager = gridLayourManager
         adapter = MyRecyclerViewAdapter(activity!!, items)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
@@ -106,23 +93,9 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     val games: List<Game> = result.result
-                    gameItems = games.map { HomeRecyclerViewItem(it) }
+                    gameItems = games
                     gamesDisposable!!.dispose()
                     fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
-                }, { error ->
-                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                })
-    }
-
-    private fun getSports(sportsRecyclerView: RecyclerView) {
-        sportsDisposable = wikiApiService.getSports()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    val sports: List<Sport> = result.result
-                    sportItems = sports.map { HomeRecyclerViewItem(it) }
-                    sportsDisposable!!.dispose()
-                    fillRecyclerViewWithItem(sportItems!!, sportsRecyclerView)
                 }, { error ->
                     Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
                 })

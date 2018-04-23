@@ -26,7 +26,8 @@
         <activity android:name="com.altintro.podium.Activity.MainActivity" />
         <activity android:name="com.altintro.podium.activity.AuthenticationActivity" />
 
-        <activity android:name="com.altintro.podium.activity.RegisterActivity">
+        <activity android:name="com.altintro.podium.activity.RegisterActivity"
+                    android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>

@@ -1,24 +1,23 @@
 package com.altintro.podium.Adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import com.altintro.podium.model.HomeRecyclerViewItem
+import com.altintro.podium.custom.ParticipantsView
+import com.altintro.podium.model.Game
 import com.example.a630465.podium.R
-import com.squareup.picasso.Picasso
-import java.util.*
-
-class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
 
 
-    var mItems: List<HomeRecyclerViewItem>
+class MyRecyclerViewAdapter(context: Context, items: List<Game>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+
+
+    var mItems: List<Game>
     private val mInflater: LayoutInflater
     private var mClickListener: ItemClickListener? = null
+    private var context = context
 
 
     init {
@@ -39,27 +38,23 @@ class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>)
     // binds the data to the view and textview in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mItems.get(position)
-        holder.myView.setBackgroundColor(Color.GRAY)
 
-        //Load image with Picasso
-        if (item.imageUrl != "") {
-            Picasso.get().load(item.imageUrl)
-                    .placeholder(R.drawable.loading)
-                    .into(holder.myView)
-        }
+        holder.tvName.setText(item.name)
+        holder.tvSport.setText(item.sport!!.name)
+        holder.viewParticipants.setImageForUser(item)
 
-        holder.myTextView.setText(item.name)
     }
 
-    // stores and recycles views as they are scrolled off screen
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        var myView: ImageView
-        var myTextView: TextView
+        var tvSport: TextView
+        var tvName: TextView
+        var viewParticipants: ParticipantsView
 
         init {
-            myView = itemView.findViewById(R.id.itemImageView)
-            myTextView = itemView.findViewById(R.id.itemName)
+            tvName = itemView.findViewById(R.id.tv_name)
+            tvSport = itemView.findViewById(R.id.tv_sport)
+            viewParticipants = itemView.findViewById(R.id.view_participants)
             itemView.setOnClickListener(this)
         }
 
@@ -69,7 +64,7 @@ class MyRecyclerViewAdapter(context: Context, items: List<HomeRecyclerViewItem>)
     }
 
     // convenience method for getting data at click position
-    fun getItem(id: Int): HomeRecyclerViewItem {
+    fun getItem(id: Int): Game {
         return mItems.get(id)
     }
 

@@ -1,6 +1,7 @@
 package com.altintro.podium.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -18,6 +19,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import android.view.inputmethod.InputMethodManager
+import com.altintro.podium.Activity.MainActivity
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -41,15 +43,20 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
-        val action = getIntent().action
+
+        setupComponents()
+        loadView()
+    }
+
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val action = intent!!.action
         val url = intent.data
 
         if(action == INTENT_MAGIC_LINK){
             checkLogin(url)
         }
-
-        setupComponents()
-        loadView()
     }
 
     private fun setupComponents() {

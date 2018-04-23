@@ -10,7 +10,7 @@
     <dimen name="small_margin">10dp</dimen>
     <dimen name="recyclerViewItem_width">125dp</dimen>
     <dimen name="recyclerViewItem_height">125dp</dimen>
-    <dimen name="font_medium">17sp</dimen>
+    <dimen name="font_medium">18sp</dimen>
     <dimen name="recyclerViewList_title_height">20dp</dimen>
     <dimen name="big_margin">60dp</dimen>
     <dimen name="recyclerViewList_height">220dp</dimen>
