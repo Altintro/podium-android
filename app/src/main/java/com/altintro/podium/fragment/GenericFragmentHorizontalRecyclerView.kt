@@ -1,7 +1,7 @@
 package com.altintro.podium.fragment
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,12 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.altIntro.podium.R
 import com.altintro.podium.OrientationMode
+import com.altintro.podium.R
 import com.altintro.podium.adapter.GenericRecyclerViewAdapter
 import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
-import java.io.Serializable
 
 class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fragment() {
     companion object {
@@ -38,16 +37,15 @@ class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fra
     lateinit var titleText: TextView
     lateinit var recyclerViewContent: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         if (inflater != null) {
             fragmentView = inflater.inflate(R.layout.generic_fragment_horizontal_recycler_view, container, false)
             recyclerViewContent = fragmentView.findViewById(R.id.generic_horizontal_recycler_view)
             titleText = fragmentView.findViewById(R.id.title_text)
 
-            val content = arguments.getSerializable(GenericFragmentHorizontalRecyclerView.ARG_CONTENT) as T
-            val title = arguments.getString(GenericFragmentHorizontalRecyclerView.ARG_TITLE)
+            val content = arguments!!.getSerializable(GenericFragmentHorizontalRecyclerView.ARG_CONTENT) as T
+            val title = arguments!!.getString(GenericFragmentHorizontalRecyclerView.ARG_TITLE)
             titleText.text = title
 
             val adapter = GenericRecyclerViewAdapter<Z,T>(content, OrientationMode.HORIZONTAL)

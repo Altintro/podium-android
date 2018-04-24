@@ -4,11 +4,8 @@ import java.io.Serializable
 
 data class HomeRecyclerViewItem(
                  val name: String,
-                 val description: String,
-                 val imageUrl: String) : Serializable {
+                 val sport: Sport) : Serializable {
 
-    constructor(game:Game) : this(game.name, game.description ?: "", game.sport?.image ?: "")
-
-    constructor(sport:Sport) : this(sport.name, sport.description, sport.image)
+    constructor(game:Game) : this(game.name, game.sport!!)
 
 }

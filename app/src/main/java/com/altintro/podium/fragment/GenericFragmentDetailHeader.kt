@@ -1,13 +1,13 @@
 package com.altintro.podium.fragment
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.altIntro.podium.R
+import com.altintro.podium.R
 import com.altintro.podium.model.Listable
 import com.squareup.picasso.Picasso
 
@@ -32,12 +32,12 @@ class GenericFragmentDetailHeader <T: Listable>: Fragment() {
     lateinit var textTitle: TextView
     lateinit var textSubTitle: TextView
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         if (inflater != null) {
 
-            val content = arguments.getSerializable(ARG_CONTENT) as T
+            val content = arguments!!.getSerializable(ARG_CONTENT) as T
 
             fragmentView = inflater.inflate(R.layout.generic_fragment_detail_header, container, false)
             image = fragmentView.findViewById(R.id.image)

@@ -1,23 +1,34 @@
 package com.altintro.podium.Activity
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.widget.Toolbar
 import com.altintro.podium.Fragment.CreateFragment
 import com.altintro.podium.Fragment.HomeFragment
-import com.altintro.podium.Fragment.ProfileFragment
-import com.example.a630465.podium.R
-import com.squareup.picasso.Picasso
+import com.altintro.podium.R
+import com.altintro.podium.fragment.ProfileFragment
+import com.altintro.podium.interactor.ErrorCompletion
+import com.altintro.podium.interactor.SuccessCompletion
+import com.altintro.podium.interactor.getUser.GetUserInteractor
+import com.altintro.podium.interactor.getUser.GetUserInteractorFakeImpl
+import com.altintro.podium.model.User
+import com.altintro.podium.utils.PREFERENCES
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var homeFragment: HomeFragment
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Clear token
+        prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+        prefs.edit().putString("token", "").apply()
 
         setupComponents()
     }
@@ -48,8 +59,22 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_profile -> {
 
-                val profileFragment = ProfileFragment.newInstance()
-                openFragment(profileFragment)
+                lateinit var loggedUser: User
+
+                // ToDo: Now, user logged in the app is obtained using FakeImplementation of GetUserInteractor
+                val getUserInteractor : GetUserInteractor = GetUserInteractorFakeImpl()
+                getUserInteractor.execute(userId = "a1b2c3d4", success = object : SuccessCompletion<User> {
+                    override fun successCompletion(data: User) {
+                        loggedUser = data
+                        val profileFragment = ProfileFragment.newInstance(loggedUser)
+                        openFragment(profileFragment)
+                    }
+                }, error = object : ErrorCompletion {
+                    override fun errorCompletion(errorMessage: String) {
+                    }
+
+                })
+
                 return@OnNavigationItemSelectedListener true
             }
         }

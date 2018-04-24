@@ -40,11 +40,9 @@ data class User(@SerializedName("_id") val id: String,
             var diferentSports = gamesWon?.groupingBy { it.sport.name }?.eachCount()?.count()
             return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
         } else {
-            return "no victories registered ..."
+            return "No victories"
         }
-
     }
-
 }
 
 

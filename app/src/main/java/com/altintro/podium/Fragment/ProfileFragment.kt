@@ -1,13 +1,14 @@
 package com.altintro.podium.fragment
 
-import android.app.Fragment
+
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.altIntro.podium.R
+import com.altintro.podium.R
 import com.altintro.podium.model.*
 
 class ProfileFragment : Fragment() {
@@ -46,19 +47,19 @@ class ProfileFragment : Fragment() {
 
             // Configuro fragmento de datos de usuario
             val userHeaderFragment: GenericFragmentDetailHeader<User> = GenericFragmentDetailHeader.newInstance<User>(user)
-            fragmentManager.beginTransaction().replace(R.id.header_fragment, userHeaderFragment).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.header_fragment, userHeaderFragment).commit()
 
             // Configuro fragmento de intereses
-            val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(user.interests, "Interests")
-            fragmentManager.beginTransaction().replace(R.id.interests_fragment, userPreferencesFragment).commit()
+            val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(user.interests, "Ranking")
+            fragmentManager!!.beginTransaction().replace(R.id.interests_fragment, userPreferencesFragment).commit()
 
             // Configuro fragmento de proximas partidas
             val userUpcomingFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(user.gamesUpcoming, "Upcoming")
-            fragmentManager.beginTransaction().replace(R.id.upcoming_fragment, userUpcomingFragment).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.upcoming_fragment, userUpcomingFragment).commit()
 
             // Configuro fragmento de últimas partidas
             val userLastPlayedFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(user.gamesPlayed, "Last Played")
-            fragmentManager.beginTransaction().replace(R.id.last_played_fragment, userLastPlayedFragment).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.last_played_fragment, userLastPlayedFragment).commit()
         }
 
         return fragmentView

@@ -1,6 +1,7 @@
 package com.altintro.podium.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -17,7 +18,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import android.view.inputmethod.InputMethodManager
-import com.altIntro.podium.R
+import com.altintro.podium.R
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -41,15 +42,20 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
-        val action = getIntent().action
+
+        setupComponents()
+        loadView()
+    }
+
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val action = intent!!.action
         val url = intent.data
 
         if(action == INTENT_MAGIC_LINK){
             checkLogin(url)
         }
-
-        setupComponents()
-        loadView()
     }
 
     private fun setupComponents() {
@@ -60,9 +66,11 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_continue_with_email.setOnClickListener{
             if(Utils().isEmailValid(et_email.text.toString())){
+                //Keyboard
                 val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
                 imm.hideSoftInputFromWindow(this.currentFocus.windowToken, 0)
+                //
                 container_inputEmail.visibility = View.GONE
                 loader_indicator.visibility = View.VISIBLE
                 email = et_email.text.toString()

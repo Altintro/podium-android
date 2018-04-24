@@ -1,16 +1,14 @@
 package com.altintro.podium.adapter
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.altIntro.podium.R
 import com.altintro.podium.OrientationMode
+import com.altintro.podium.R
 import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
 import com.squareup.picasso.Picasso
