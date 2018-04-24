@@ -19,8 +19,6 @@ class MyRecyclerViewAdapter(context: Context, items: List<Game>) : RecyclerView.
     var mItems: List<Game>
     private val mInflater: LayoutInflater
     private var mClickListener: ItemClickListener? = null
-    private var context = context
-
 
     init {
         this.mInflater = LayoutInflater.from(context)

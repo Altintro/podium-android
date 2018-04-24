@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.altintro.podium.WikiApiService
-import com.altintro.podium.model.UserRegister
+import com.altintro.podium.Model.UserRegister
 import com.altintro.podium.router.Router
 import com.altintro.podium.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -83,7 +83,7 @@ class RegisterActivity : AppCompatActivity() {
         btn_register.setOnClickListener{
             name = et_fullName.text.toString()
             alias = et_alias.text.toString()
-            val userRegister = UserRegister(name,alias,email)
+            val userRegister = UserRegister(name, alias, email)
             registerUser(userRegister)
         }
     }

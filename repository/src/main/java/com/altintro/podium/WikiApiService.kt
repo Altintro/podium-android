@@ -1,6 +1,6 @@
 package com.altintro.podium
 
-import com.altintro.podium.model.*
+import com.altintro.podium.Model.*
 import com.example.repository.BuildConfig
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -84,7 +84,8 @@ interface WikiApiService {
 
 
     //-----------------------------------Tournaments-----------------------------------
-    @GET("tournaments")
+    //Coming next
+    /*@GET("tournaments")
     fun getTournaments(@Header("x-access-token") token: String,
                        @Query("name") name: String,
                        @Query("type") type: String,
@@ -109,7 +110,7 @@ interface WikiApiService {
 
     @DELETE("tournaments/{id}")
     fun deleteTournaments(@Header("x-access-token") token: String,
-                          @Path("id") userId: String)
+                          @Path("id") userId: String)*/
 
 
     //----------------------------------------------------------------------
