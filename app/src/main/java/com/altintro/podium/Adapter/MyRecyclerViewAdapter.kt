@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.altintro.podium.R
 import com.altintro.podium.custom.ParticipantsView
 import com.altintro.podium.model.Game
-import com.example.a630465.podium.R
+
 
 
 class MyRecyclerViewAdapter(context: Context, items: List<Game>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {

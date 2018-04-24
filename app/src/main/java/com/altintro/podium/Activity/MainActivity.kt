@@ -4,12 +4,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.widget.Toolbar
 import com.altintro.podium.Fragment.CreateFragment
 import com.altintro.podium.Fragment.HomeFragment
 import com.altintro.podium.Fragment.ProfileFragment
-import com.example.a630465.podium.R
-import com.squareup.picasso.Picasso
+import com.altintro.podium.R
 
 class MainActivity : AppCompatActivity() {
 

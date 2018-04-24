@@ -13,13 +13,12 @@ import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.UserRegister
 import com.altintro.podium.router.Router
 import com.altintro.podium.utils.*
-import com.example.a630465.podium.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import android.view.inputmethod.InputMethodManager
-import com.altintro.podium.Activity.MainActivity
+import com.altintro.podium.R
 
 
 class RegisterActivity : AppCompatActivity() {

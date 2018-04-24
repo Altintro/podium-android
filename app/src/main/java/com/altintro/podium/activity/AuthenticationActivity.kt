@@ -8,13 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.altintro.podium.Activity.MainActivity
+import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.SignInType
 import com.altintro.podium.router.Router
-import com.altintro.podium.utils.CONNECT_WITH_EMAIL
-import com.altintro.podium.utils.INTENT_ACTION
 import com.altintro.podium.utils.PREFERENCES
-import com.example.a630465.podium.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult

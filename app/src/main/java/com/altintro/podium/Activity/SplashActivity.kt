@@ -4,8 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.altintro.podium.activity.AuthenticationActivity
-import com.example.a630465.podium.R
+import com.altintro.podium.R
 
 class SplashActivity : AppCompatActivity() {
 

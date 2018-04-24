@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
+import com.altintro.podium.R
 import com.altintro.podium.model.Game
-import com.example.a630465.podium.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.view_participants.view.*
 
