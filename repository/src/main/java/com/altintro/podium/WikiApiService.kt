@@ -14,11 +14,25 @@ interface WikiApiService {
 
     //-----------------------------------Authentication-----------------------------------
 
-    @POST("users/register")
-    fun register(@Body userRegister: UserRegister): Observable<ResponseAuth>
+    @POST("users/emailConnect")
+    fun emailConnect(@Query("email") email: String): Observable<ResponseEmailConnect>
+
+    @POST("users/emailRegister")
+    fun emailRegister(@Body userRegister: UserRegister): Observable<ResponseEmailConnect>
+
+    @GET("users/tokens")
+    fun tokens(@Header("x-access-token") token: String): Observable<ResponseTokens>
+
+    @POST("users/facebookConnect")
+    fun facebookConnect(@Query("fbToken") fbToken: String): Observable<ResponseTokens>
+
+    @POST("users/refreshToken")
+    fun refreshToken(@Header("x-refresh-token") refreshToken: String): Observable<ResponseRefreshToken>
 
     @POST("users/login")
     fun login(@Body userRegister: UserRegister): Observable<ResponseAuth>
+
+
 
     //-----------------------------------User-----------------------------------
     @GET("users")
@@ -44,10 +58,7 @@ interface WikiApiService {
 
     //-----------------------------------Games-----------------------------------
     @GET("games")
-    fun getGame(@Header("x-access-token") token: String,
-                @Query("name") name: String,
-                @Query("limit") limit: String,
-                @Query("sort") sort: String): Observable<ResponseSearchGame>
+    fun getGames(): Observable<ResponseSearchGame>
 
     @GET("games/{id}")
     fun getGameDetail(@Header("x-access-token") token: String,
@@ -66,6 +77,10 @@ interface WikiApiService {
     @DELETE("games/{id}")
     fun deleteGame(@Header("x-access-token") token: String,
                    @Path("id") userId: String)
+
+    //-----------------------------------Sports-----------------------------------
+    @GET("sports")
+    fun getSports(): Observable<ResponseSearchSport>
 
 
     //-----------------------------------Tournaments-----------------------------------

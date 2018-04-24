@@ -1,32 +1,50 @@
 package com.altintro.podium.model
 
 import com.google.gson.annotations.SerializedName
-import com.keepcoding.madridshops.domain.model.Aggregate
-import java.io.Serializable
 
 data class User(@SerializedName("_id") val id: String,
                 val name: String,
                 val profilePic: String,
                 val alias: String,
+                val pass: String = "",
                 val gender: Gender,
-                val birthdate: String,
-                val latitude: Float,
-                val longitude: Float,
-                val email: String,
-                val ranking: List<UserRanking>,
-                val interests: List<Sport>,
-                val emblems: List<Emblem>,
-                val tournamentsPlayed: List<Tournament>,
-                val tournamentsPlaying: List<Tournament>,
-                val tournamentsUpcoming: List<Tournament>,
-                val tournamentsWon: List<Tournament>,
-                val gamesPlayed: List<Game>,
-                val gamesPlaying: List<Game>,
-                val gamesUpcoming: List<Game>,
-                val gamesWon: List<Game>,
-                val fb: Facebook,
+                val birthdate: String = "",
+                val latitude: Float = 0f,
+                val longitude: Float = 0f,
+                val email: String = "",
+                val ranking: List<UserRanking>? = null,
+                val interests: Sports? = null,
+                val tournamentsPlayed: List<Tournament>? = null,
+                val tournamentsPlaying: List<Tournament>? = null,
+                val tournamentsUpcoming: List<Tournament>? = null,
+                val tournamentsWon: List<Tournament>? = null,
+                val gamesPlayed: Games? = null,
+                val gamesPlaying: Games? = null,
+                val gamesUpcoming: Games? = null,
+                val gamesWon: List<Game>? = null,
+                val mergedWithGoogle: Boolean,
                 val hasPassword: Boolean,
-                val mergedWithFb: Boolean) : Serializable
+                val mergedWithFb: Boolean) : Listable {
+
+    override fun get_Image(): String {
+        return profilePic
+    }
+
+    override fun getTitle(): String {
+        return name
+    }
+
+    override fun getSubtitle(): String {
+
+        if (gamesWon?.count() != 0) {
+            var diferentSports = gamesWon?.groupingBy { it.sport.name }?.eachCount()?.count()
+            return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
+        } else {
+            return "No victories"
+        }
+    }
+}
+
 
 class Users(val users: MutableList<User>): Aggregate<User> {
     override fun count(): Int = users.size

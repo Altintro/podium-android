@@ -6,11 +6,20 @@ import java.io.Serializable
 data class ResponseAuth(val auth: Boolean,
                         val token: String) : Serializable
 
+data class ResponseEmailConnect(val auth: Boolean) : Serializable
+
+data class ResponseTokens(val auth: Boolean,
+                          val type: String,
+                          val accessToken: String,
+                          val refreshToken: String)
+
+data class ResponseRefreshToken(val auth: Boolean,
+                                val accessToken: String)
+
 //-----------------------------------User-----------------------------------
 
 data class UserRegister(var name: String,
                         val alias: String,
-                        val pass: String,
                         val email: String) : Serializable
 
 data class ResponseSearchUser(var success: Boolean,
@@ -20,8 +29,11 @@ data class ResponseSearchUser(var success: Boolean,
 
 data class GameCreation(var name: String)
 
-data class ResponseSearchGame(var success: Boolean,
-                              var result: List<Game>) : Serializable
+data class ResponseSearchGame(var result: List<Game>) : Serializable
+
+//-----------------------------------Sport-----------------------------------
+
+data class ResponseSearchSport(var result: List<Sport>) : Serializable
 
 //-----------------------------------Tournament-----------------------------------
 

@@ -22,7 +22,7 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField "String", "PODIUM_API", "\"https://node.winatpodium.com/apiv1/\""
+            buildConfigField "String", "PODIUM_API", "\"https://api.winatpodium.com/apiv1/\""
         }
 
         release {
