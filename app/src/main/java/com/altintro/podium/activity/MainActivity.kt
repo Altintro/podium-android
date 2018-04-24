@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
+        //Clear token
         prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
         prefs.edit().putString("token", "").apply()
 
