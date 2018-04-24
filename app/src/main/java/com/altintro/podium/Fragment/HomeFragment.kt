@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.altintro.podium.Activity.GameDetailActivity
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
@@ -75,10 +76,9 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     }
 
     override fun onItemClick(view: View, position: Int) {
-        if(prefs.getString("token", "").isEmpty()) {
-            val intent = Intent(activity, AuthenticationActivity::class.java)
-            startActivity(intent)
-        }
+
+        val intent = Intent(activity, GameDetailActivity::class.java)
+        startActivity(intent)
     }
 
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------

@@ -23,4 +23,5 @@
     <dimen name="no_margin">0dp</dimen>
     <dimen name="icon_size">40dp</dimen>
     <dimen name="extended_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
