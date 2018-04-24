@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +36,6 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     private lateinit var adapter: MyRecyclerViewAdapter
     private lateinit var prefs: SharedPreferences
     private val TAG = HomeFragment::class.qualifiedName
-    private lateinit var layourManager: GridLayoutManager
 
     private var gamesDisposable: Disposable? = null
 
@@ -68,8 +68,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
 
     fun fillRecyclerViewWithItem(items:List<Game>, recyclerView: RecyclerView) {
 
-        val gridLayourManager = GridLayoutManager(this.context,2)
-        recyclerView.layoutManager = gridLayourManager
+        recyclerView.layoutManager = GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         adapter = MyRecyclerViewAdapter(activity!!, items)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter

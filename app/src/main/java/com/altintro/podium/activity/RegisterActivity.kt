@@ -66,9 +66,11 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_continue_with_email.setOnClickListener{
             if(Utils().isEmailValid(et_email.text.toString())){
+                //Keyboard
                 val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
                 imm.hideSoftInputFromWindow(this.currentFocus.windowToken, 0)
+                //
                 container_inputEmail.visibility = View.GONE
                 loader_indicator.visibility = View.VISIBLE
                 email = et_email.text.toString()

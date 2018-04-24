@@ -1,6 +1,7 @@
 package com.altintro.podium.Adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +42,7 @@ class MyRecyclerViewAdapter(context: Context, items: List<Game>) : RecyclerView.
         val item = mItems.get(position)
 
         holder.tvName.setText(item.name)
-        holder.tvSport.setText(item.sport!!.name)
+        holder.tvSport.setText(item.sport.name)
         holder.viewParticipants.setImageForUser(item)
 
     }

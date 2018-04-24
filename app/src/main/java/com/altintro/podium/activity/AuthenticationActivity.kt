@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.altintro.podium.Activity.MainActivity
 import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.SignInType
@@ -40,8 +39,6 @@ class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
-
-        prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
         initializeFacebookData()
         setupComponents()

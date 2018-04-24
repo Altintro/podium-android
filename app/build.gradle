@@ -25,19 +25,26 @@ android {
 }
 
 dependencies {
+
     implementation project(':domain')
+
     implementation project(':repository')
+
     //Rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
     //Firebase
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.google.firebase:firebase-core:11.8.0'
+
     //Login Facebook
     implementation 'com.facebook.android:facebook-login:[4,5)'
+
     //Iconify
     implementation 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
     implementation 'com.joanzapata.iconify:android-iconify-typicons:2.2.2'
     implementation 'com.joanzapata.iconify:android-iconify-material:2.2.2'
+
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     //Circle Image
@@ -53,7 +60,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support:recyclerview-v7:26.+'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // enabling multidex suport to avoid 64K method limit
+    // see: https://developer.android.com/studio/build/multidex.html
+    implementation 'com.android.support:multidex:1.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
