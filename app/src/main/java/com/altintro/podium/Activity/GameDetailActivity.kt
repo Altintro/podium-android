@@ -26,6 +26,7 @@ class GameDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_detail)
         setSupportActionBar(toolbar)
 
+        //TODO: change locations to real when they come from the server
         hardcodedLocations = arrayListOf("Avenida Siempre Viva 1732, Springfield", "Greifswalder Strasse 152, Berlin", "Maggio 355, Buenos Aires", "Calle de Carretas 6, Madrid", "Avenida Touroperador Kouni 15, Las Palmas")
 
         val game: Game = intent.getSerializableExtra(PARAM_GAME) as Game

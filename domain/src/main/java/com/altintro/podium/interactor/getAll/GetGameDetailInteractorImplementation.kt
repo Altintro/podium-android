@@ -2,6 +2,7 @@ package com.altintro.podium.interactor.getAll
 
 import com.altintro.podium.Model.GameEntity
 import com.altintro.podium.Model.SportEntity
+import com.altintro.podium.Model.UserEntity
 import com.altintro.podium.Repository.Repository
 import com.altintro.podium.Repository.RepositoryGamesImplementation
 import com.altintro.podium.interactor.ErrorCompletion
@@ -29,7 +30,7 @@ class GetGameDetailInteractorImplementation: GetOneInteractor<Game> {
                 gameEntity.name,
                 mapSportEntityToSport(gameEntity.sport),
                 ArrayList<Tournament>(),
-                ArrayList<Team>(),
+                mapUserEntitiesToUser(gameEntity.participants),
                 null,
                 null,
                 gameEntity.concluded,
@@ -62,5 +63,24 @@ class GetGameDetailInteractorImplementation: GetOneInteractor<Game> {
         )
 
         return sport
+    }
+
+    private fun mapUserEntitiesToUser(userEntities: List<UserEntity>): List<User> {
+        var usersList = mutableListOf<User>()
+
+        userEntities.forEach {
+            val user = User (
+                    it.id,
+                    it.name,
+                    it.profilePic,
+                    it.alias,
+                    false,    //Not relevant for the Game
+                    false,        //Not relevant for the Game
+                    false,      //Not relevant for the Game
+                    Gender.Male               //TODO: Get real gender when is sent from backend
+            )
+            usersList.add(user)
+        }
+        return usersList
     }
 }
