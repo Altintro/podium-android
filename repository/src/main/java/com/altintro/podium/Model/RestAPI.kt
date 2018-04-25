@@ -1,4 +1,4 @@
-package com.altintro.podium.model
+package com.altintro.podium.Model
 
 import java.io.Serializable
 
@@ -23,25 +23,27 @@ data class UserRegister(var name: String,
                         val email: String) : Serializable
 
 data class ResponseSearchUser(var success: Boolean,
-                              var result: List<User>) : Serializable
+                              var result: List<UserEntity>) : Serializable
 
 //-----------------------------------Game-----------------------------------
 
 data class GameCreation(var name: String)
 
-data class ResponseSearchGame(var result: List<Game>) : Serializable
+data class ResponseSearchGame(var result: List<GameEntity>) : Serializable
 
 //-----------------------------------Sport-----------------------------------
 
-data class ResponseSearchSport(var result: List<Sport>) : Serializable
+data class ResponseSearchSport(var result: List<SportEntity>) : Serializable
 
 //-----------------------------------Tournament-----------------------------------
 
+//Coming next
+/*
 data class TournamentCreation(var name: String,
                               var compType: String)
 
 data class ResponseSearchTournament(var success: Boolean,
-                                    var result: List<Tournament>) : Serializable
+                                    var result: List<Tournament>) : Serializable*/
 
 
 

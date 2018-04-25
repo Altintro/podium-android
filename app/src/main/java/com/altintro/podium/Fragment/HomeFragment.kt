@@ -6,16 +6,19 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.altintro.podium.Activity.GameDetailActivity
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
-import com.altintro.podium.activity.AuthenticationActivity
+import com.altintro.podium.interactor.ErrorCompletion
+import com.altintro.podium.interactor.SuccessCompletion
+import com.altintro.podium.interactor.getAll.GetAllGamesInteractorImplementation
+import com.altintro.podium.interactor.getAll.GetAllInteractor
 import com.altintro.podium.model.Game
 import com.altintro.podium.utils.PREFERENCES
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -75,25 +78,26 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     }
 
     override fun onItemClick(view: View, position: Int) {
-        if(prefs.getString("token", "").isEmpty()) {
-            val intent = Intent(activity, AuthenticationActivity::class.java)
-            startActivity(intent)
-        }
+
+        val intent = Intent(activity, GameDetailActivity::class.java)
+        startActivity(intent)
     }
 
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
 
     private fun getGames(gamesRecyclerView: RecyclerView) {
-        gamesDisposable = wikiApiService.getGames()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    val games: List<Game> = result.result
-                    gameItems = games
-                    gamesDisposable!!.dispose()
-                    fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
-                }, { error ->
-                    Toast.makeText(activity!!, error.message, Toast.LENGTH_LONG).show()
-                })
+        val getAllGamesInteractor: GetAllInteractor<List<Game>> = GetAllGamesInteractorImplementation()
+        getAllGamesInteractor.execute(success = object: SuccessCompletion<List<Game>>{
+            override fun successCompletion(games: List<Game>) {
+                gameItems = games
+                fillRecyclerViewWithItem(gameItems!!, gamesRecyclerView)
+            }
+
+        }, error = object: ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(activity!!, errorMessage, Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 }
