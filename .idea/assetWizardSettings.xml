@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/../Icons/Android/btn_profile/xxxhdpi/profile_button_normal.png" />
-                                      <entry key="outputName" value="ic_profile_btn" />
+                                      <entry key="imageAsset" value="$PROJECT_DIR$/../../Icons/Android/game_date_icon/game_date_iconmdpi.png" />
+                                      <entry key="outputName" value="ic_game_date" />
                                       <entry key="theme" value="HOLO_DARK" />
                                     </map>
                                   </option>

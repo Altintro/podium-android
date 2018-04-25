@@ -19,6 +19,8 @@ import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.interactor.getAll.GetAllGamesInteractorImplementation
 import com.altintro.podium.interactor.getAll.GetAllInteractor
+import com.altintro.podium.interactor.getAll.GetGameDetailInteractorImplementation
+import com.altintro.podium.interactor.getAll.GetOneInteractor
 import com.altintro.podium.model.Game
 import com.altintro.podium.utils.PREFERENCES
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -79,9 +81,20 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
 
     override fun onItemClick(view: View, position: Int) {
 
-        val intent = Intent(activity, GameDetailActivity::class.java)
-        intent.putExtra(GameDetailActivity.PARAM_GAME_ID, gameItems!![position].id)
-        startActivity(intent)
+        val getGameInteractor: GetOneInteractor<Game> = GetGameDetailInteractorImplementation()
+        getGameInteractor.execute(gameItems!![position].id, success = object: SuccessCompletion<Game> {
+            override fun successCompletion(game: Game) {
+
+                val intent = Intent(activity, GameDetailActivity::class.java)
+                intent.putExtra(GameDetailActivity.PARAM_GAME, game)
+                startActivity(intent)
+            }
+        }, error = object: ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(activity!!, errorMessage, Toast.LENGTH_LONG).show()
+            }
+        })
+
     }
 
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
