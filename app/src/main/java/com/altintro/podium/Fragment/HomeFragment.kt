@@ -80,6 +80,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     override fun onItemClick(view: View, position: Int) {
 
         val intent = Intent(activity, GameDetailActivity::class.java)
+        intent.putExtra(GameDetailActivity.PARAM_GAME_ID, gameItems!![position].id)
         startActivity(intent)
     }
 

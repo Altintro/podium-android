@@ -60,10 +60,8 @@ interface WikiApiService {
     @GET("games")
     fun getGames(): Observable<ResponseSearchGame>
 
-    @GET("games/{id}")
-    fun getGameDetail(@Header("x-access-token") token: String,
-                      @Path("id") id: String,
-                      @Query("participants") participants: String): Observable<ResponseSearchGame>
+    @GET("games/{id}/detail")
+    fun getGameDetail(@Path("id") id: String): Observable<ResponseGameDetail>
 
 
     @POST("games")
