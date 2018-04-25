@@ -1,8 +1,10 @@
 package com.altintro.podium.mapper
 
-import com.altintro.podium.model.User
-import com.altintro.podium.model.Users
-import java.util.ArrayList
+import com.altintro.podium.Model.GameEntity
+import com.altintro.podium.Model.SportEntity
+import com.altintro.podium.Model.UserEntity
+import com.altintro.podium.model.*
+import java.util.*
 
 
 object Mapper {
@@ -43,4 +45,88 @@ object Mapper {
 
     }
 
+    fun mapUserEntityToUser(it: UserEntity): User {
+
+        return User(
+                id = it.id,
+                name = it.name,
+                profilePic = it.profilePic,
+                alias = it.alias,
+                pass = it.pass,
+                birthdate = it.birthdate,
+                latitude = it.latitude,
+                longitude = it.longitude,
+                email = it.email,
+                interests = mapEntityToSports(it.interests),
+                gamesPlayed = mapEntityToGames(it.gamesPlayed),
+                gamesPlaying = mapEntityToGames(it.gamesPlaying),
+                gamesUpcoming = mapEntityToGames(it.gamesUpcoming),
+                gamesWon = mapEntityToGames(it.gamesWon),
+                hasPassword = it.hasPassword,
+                mergedWithFb = it.mergedWithFb,
+                mergedWithGoogle = it.mergedWithGoogle)
+    }
+
+    fun mapEntityToSports(list: List<SportEntity>?): Sports? {
+        val sportsList = Sports(ArrayList<Sport>())
+
+        list?.forEach {
+
+            val sport = Sport(
+                    it.id,
+                    it.name,
+                    it.image
+            )
+
+            sportsList.add(sport)
+        }
+        return sportsList
+    }
+
+    fun mapEntityToGames(list: List<GameEntity>?): Games {
+        val gamesList = Games(ArrayList<Game>())
+
+        list?.forEach {
+            9
+            val game = Game(
+                    it.id,
+                    it.name,
+                    mapSportEntityToSport(it.sport),
+                    ArrayList<Tournament>(),
+                    ArrayList<Team>(),
+                    null,
+                    null,
+                    it.concluded,
+                    Date(),    //TODO: Get real Date
+                    it.latitude,
+                    it.longitude,
+                    Modality.Individual, //TODO: Get real Modality
+                    it.open,
+                    Level.Beginner,   //TODO: Get real Level
+                    ""      //TODO: Get real Description
+            )
+
+            gamesList.add(game)
+        }
+        return gamesList
+    }
+
+    fun mapSportEntityToSport(sportEntity: SportEntity): Sport {
+
+        var description = ""
+        if (sportEntity.description != null) {
+            description = sportEntity.description
+        }
+
+        val sport = Sport(
+                sportEntity.id,
+                sportEntity.name,
+                sportEntity.image,
+                description,
+                "",         //TODO: GET REAL Rules
+                sportEntity.popularity
+        )
+
+        return sport
+    }
 }

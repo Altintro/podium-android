@@ -7,7 +7,7 @@ data class User(@SerializedName("_id") val id: String,
                 val profilePic: String,
                 val alias: String,
                 val pass: String = "",
-                val gender: Gender,
+                val gender: Gender? = null,
                 val birthdate: String = "",
                 val latitude: Float = 0f,
                 val longitude: Float = 0f,
@@ -21,7 +21,7 @@ data class User(@SerializedName("_id") val id: String,
                 val gamesPlayed: Games? = null,
                 val gamesPlaying: Games? = null,
                 val gamesUpcoming: Games? = null,
-                val gamesWon: List<Game>? = null,
+                val gamesWon: Games? = null,
                 val mergedWithGoogle: Boolean,
                 val hasPassword: Boolean,
                 val mergedWithFb: Boolean) : Listable {
@@ -37,7 +37,7 @@ data class User(@SerializedName("_id") val id: String,
     override fun getSubtitle(): String {
 
         if (gamesWon?.count() != 0) {
-            var diferentSports = gamesWon?.groupingBy { it.sport.name }?.eachCount()?.count()
+            var diferentSports = gamesWon?.games?.groupingBy { it.sport.name }?.eachCount()?.count()
             return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
         } else {
             return "No victories"

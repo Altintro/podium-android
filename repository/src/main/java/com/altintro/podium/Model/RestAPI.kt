@@ -22,8 +22,11 @@ data class UserRegister(var name: String,
                         val alias: String,
                         val email: String) : Serializable
 
-data class ResponseSearchUser(var success: Boolean,
+data class ResponseSearchUsers(var success: Boolean,
                               var result: List<UserEntity>) : Serializable
+
+data class ResponseSearchMyProfile(var result: UserEntity) : Serializable
+
 
 //-----------------------------------Game-----------------------------------
 
