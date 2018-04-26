@@ -2,7 +2,9 @@ package com.altintro.podium.Activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.altintro.podium.Adapter.ParticipantsRecyclerViewAdapter
 import com.altintro.podium.R
 import com.altintro.podium.model.Game
@@ -43,7 +45,9 @@ class GameDetailActivity : AppCompatActivity() {
         game_date.text = game.date.toString()
 
         if (game.participants.count() > 0) {
-            participants_list_view.layoutManager = GridLayoutManager(baseContext, 2, GridLayoutManager.VERTICAL, false);
+            participants_list_view.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
+            participants_list_view.itemAnimator = DefaultItemAnimator()
+
             adapter = ParticipantsRecyclerViewAdapter(baseContext, game.participants)
             //adapter.setClickListener(this)
             participants_list_view.adapter = adapter

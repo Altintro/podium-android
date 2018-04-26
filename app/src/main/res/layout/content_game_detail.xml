@@ -91,12 +91,22 @@
         android:text="Participants"/>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginRight="@dimen/small_margin"
         android:id="@+id/participants_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/default_margin">
     </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:text="JOIN GAME"
+        android:textSize="@dimen/font_medium"
+        android:layout_marginTop="@dimen/extended_margin"
+        android:layout_gravity="center_horizontal"
+        />
 
 
 </LinearLayout>

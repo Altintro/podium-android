@@ -38,17 +38,16 @@ class ParticipantsRecyclerViewAdapter(context: Context, items: List<User>) : Rec
         val item = mItems.get(position)
 
         Picasso.get().load(item.profilePic)
-                .placeholder(R.drawable.loading).resize(100, 100).centerCrop()
+                .placeholder(R.drawable.loading).resize(50, 50).centerCrop()
                 .into(holder.participantImgView)
 
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        var participantImgView:CircleImageView
+        var participantImgView:CircleImageView = itemView.findViewById(R.id.participant_image_view)
 
         init {
-            participantImgView = itemView.findViewById(R.id.participant_image_view)
             itemView.setOnClickListener(this)
         }
 
