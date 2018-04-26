@@ -23,5 +23,6 @@
     <string name="upcoming_game_title">Upcoming games</string>
     <string name="title_activity_game_detail">GameDetailActivity</string>
     <string name="no_participants_text">No Participants for this game yet.</string>
+    <string name="join_game_button_title">JOIN GAME</string>
 
 </resources>

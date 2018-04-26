@@ -33,6 +33,8 @@ data class ResponseSearchGame(var result: List<GameEntity>) : Serializable
 
 data class ResponseGameDetail(var result: GameEntity) : Serializable
 
+data class ResponseGameSubscription(var success: Boolean) : Serializable
+
 //-----------------------------------Sport-----------------------------------
 
 data class ResponseSearchSport(var result: List<SportEntity>) : Serializable
