@@ -1,23 +1,25 @@
 package com.altintro.podium.Repository
 
 import com.altintro.podium.Model.GameEntity
+import com.altintro.podium.Model.UserEntity
 import com.altintro.podium.WikiApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class RepositoryGamesImplementation : Repository<GameEntity> {
+class RepositoryUserImplementation : Repository<UserEntity> {
 
 
-    private var gamesDisposable: Disposable? = null
+    private var userDisposable: Disposable? = null
 
     private val wikiApiService by lazy {
         WikiApiService.create()
     }
 
-    override fun getAll(success: (items: List<GameEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun getAll(success: (items: List<UserEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
 
-        gamesDisposable = wikiApiService.getGames()
+/*
+        userDisposable = wikiApiService.getGames()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
@@ -26,11 +28,14 @@ class RepositoryGamesImplementation : Repository<GameEntity> {
                 }, { error ->
                     error(error.localizedMessage)
                 })
+*/
+
     }
 
-    override fun getOne(objId:String, success: (item: GameEntity) -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun getOne(objId:String, success: (item: UserEntity) -> Unit, error: (errorMessage: String) -> Unit) {
 
-        gamesDisposable = wikiApiService.getGameDetail(objId)
+/*
+        userDisposable = wikiApiService.getGameDetail(objId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
@@ -39,5 +44,22 @@ class RepositoryGamesImplementation : Repository<GameEntity> {
                 }, { error ->
                     error(error.localizedMessage)
                 })
+*/
     }
+
+    fun getMyProfile(token : String, success: (item: UserEntity) -> Unit, error: (errorMessage: String) -> Unit) {
+
+        userDisposable = wikiApiService.getMyProfile(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    val userEntity: UserEntity = result.result
+                    success(userEntity)
+                }, { error ->
+                    error(error.localizedMessage)
+                })
+    }
+
+
+
 }

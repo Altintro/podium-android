@@ -15,7 +15,11 @@ data class UserEntity (@SerializedName("_id")
         val latitude: Float = 0f,
         val longitude: Float = 0f,
         val email: String = "",
-        val interests: SportEntity? = null,
+        val interests: List<SportEntity>? = null,
+        val gamesPlayed: List<GameEntity>? = null,
+        val gamesPlaying: List<GameEntity>? = null,
+        val gamesUpcoming: List<GameEntity>? = null,
+        val gamesWon: List<GameEntity>? = null,
         val mergedWithGoogle: Boolean,
         val hasPassword: Boolean,
         val mergedWithFb: Boolean

@@ -44,26 +44,27 @@ interface WikiApiService {
                 @Query("skip") toSkip: String,
                 @Query("fields") fields1: String,
                 @Query("fields") fields2: String,
-                @Query("sort") sort: String): Observable<ResponseSearchUser>
+                @Query("sort") sort: String): Observable<ResponseSearchUsers>
 
     @GET("users/{id}")
     fun getUserDetail(@Header("x-access-token") token: String,
                       @Path("id") userId: String,
-                      @Query("games") games: String): Observable<ResponseSearchUser>
+                      @Query("games") games: String): Observable<ResponseSearchUsers>
 
     @DELETE("users/{id}")
     fun deleteUser(@Header("x-access-token") token: String,
                    @Path("id") userId: String)
+
+    @GET("users/me")
+    fun getMyProfile(@Header("x-access-token") token: String): Observable<ResponseSearchMyProfile>
 
 
     //-----------------------------------Games-----------------------------------
     @GET("games")
     fun getGames(): Observable<ResponseSearchGame>
 
-    @GET("games/{id}")
-    fun getGameDetail(@Header("x-access-token") token: String,
-                      @Path("id") id: String,
-                      @Query("participants") participants: String): Observable<ResponseSearchGame>
+    @GET("games/{id}/detail")
+    fun getGameDetail(@Path("id") id: String): Observable<ResponseGameDetail>
 
 
     @POST("games")

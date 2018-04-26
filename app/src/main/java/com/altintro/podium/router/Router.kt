@@ -29,6 +29,11 @@ class Router {
         activity.startActivity(Intent(activity, RegisterActivity::class.java).putExtra(INTENT_ACTION, CONNECT_WITH_GOOGLE_NEW_USER))
     }
 
+    fun goToAuthenticationActivityFromMain(activity: MainActivity) {
+        activity.startActivity(Intent(activity, AuthenticationActivity::class.java))
+    }
+
+
 
 
 }
