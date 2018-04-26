@@ -23,4 +23,12 @@
     <string name="upcoming_game_title">Upcoming games</string>
     <string name="title_activity_game_detail">GameDetailActivity</string>
 
+    <string name="choose_sport_for_game">Choose a sport for the game</string>
+    <string name="step1">Choose a sport for the game</string>
+    <string name="step2">Give some details to your oponents</string>
+    <string name="step3">Invite others to play!</string>
+    <string name="Title">Title</string>
+    <string name="When">When?</string>
+    <string name="Details">Details</string>
+
 </resources>

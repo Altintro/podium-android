@@ -19,9 +19,16 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import android.view.inputmethod.InputMethodManager
 import com.altintro.podium.R
+import com.altintro.podium.adapter.RecyclerViewAdapter
+import com.altintro.podium.fragment.GenericFragmentHorizontalRecyclerView
+import com.altintro.podium.interactor.ErrorCompletion
+import com.altintro.podium.interactor.SuccessCompletion
+import com.altintro.podium.interactor.getAll.GetAllSportsInteractorImplementation
+import com.altintro.podium.model.Sport
+import com.altintro.podium.model.Sports
 
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListener {
 
     private val wikiApiService by lazy {
         WikiApiService.create()
@@ -35,6 +42,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private val router: Router = Router()
     private val TAG = AuthenticationActivity::class.qualifiedName
+    private var sportItems = Sports(ArrayList<Sport>())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +54,6 @@ class RegisterActivity : AppCompatActivity() {
         setupComponents()
         loadView()
     }
-
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
@@ -112,6 +119,10 @@ class RegisterActivity : AppCompatActivity() {
         container_register.visibility = View.GONE
         container_message.visibility = View.VISIBLE
     }
+    override fun onItemClick(view: View, position: Int, content: String) {
+        Toast.makeText(this, content, Toast.LENGTH_LONG).show()
+    }
+
 
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
 
@@ -163,6 +174,7 @@ class RegisterActivity : AppCompatActivity() {
                 .subscribe(
                         { result ->
                             if(result.auth == false){
+                                getSports()
                                 prepareRegisterViewFromEmail()
                             }else if(result.auth == true){
                                 prefs.edit().putString("name", name).apply()
@@ -199,4 +211,26 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    private fun getSports() {
+
+        val getAllSportsInteractor = GetAllSportsInteractorImplementation()
+        getAllSportsInteractor.execute(success = object : SuccessCompletion<Sports> {
+            override fun successCompletion(sports: Sports) {
+                sportItems = sports
+                createRecyclerView()
+            }
+
+        }, error = object : ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(baseContext, errorMessage, Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
+    private fun createRecyclerView() {
+        val userInteresentsFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(sportItems, "Interesents")
+        supportFragmentManager.beginTransaction().add(R.id.interests_fragment, userInteresentsFragment).commit()
+    }
 }
+

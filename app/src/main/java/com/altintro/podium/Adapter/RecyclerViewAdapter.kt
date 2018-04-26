@@ -14,16 +14,15 @@ import com.altintro.podium.model.Listable
 import com.squareup.picasso.Picasso
 
 
-class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, val orientation: OrientationMode) : RecyclerView.Adapter<GenericRecyclerViewAdapter<Z, T>.ContentViewHolder>() {
+class RecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, val orientation: OrientationMode) : RecyclerView.Adapter<RecyclerViewAdapter<Z, T>.ContentViewHolder>() {
 
-    var onClickListener : View.OnClickListener? = null
+    private var onClickListener : ItemClickListener? = null
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ContentViewHolder {
         val cellLayout = if (orientation == OrientationMode.VERTICAL) {
             R.layout.generic_cell_vertical} else {R.layout.generic_cell_horizontal}
         val view = LayoutInflater.from(parent?.context).inflate(cellLayout, parent, false)
-        view.setOnClickListener(onClickListener)
         context = parent!!.getContext()
         return ContentViewHolder(view)
     }
@@ -41,23 +40,37 @@ class GenericRecyclerViewAdapter<Z: Listable, T : Aggregate<Z>>(val content: T, 
         holder?.bindShop(contentImage, contentTitle, contentSubTitle)
     }
 
-    inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        val contentimage = itemView.findViewById<ImageView>(R.id.content_image)
+        val contentImage = itemView.findViewById<ImageView>(R.id.content_image)
         val contentTitle = itemView.findViewById<TextView>(R.id.content_title)
         val contentSubtitle = itemView.findViewById<TextView>(R.id.content_subtitle)
+
 
         fun bindShop(image: String, title: String, subTitle: String) {
 
             // Si la imagen  no es vacía la muestro, si lo es quito el ImageView de la vista
             if (image != "") {
-                Picasso.get().load(image).placeholder(R.drawable.loading).into(contentimage)
+                Picasso.get().load(image).placeholder(R.drawable.loading).into(contentImage)
 
             } else {
-                contentimage.visibility = View.GONE
+                contentImage.visibility = View.GONE
             }
             contentTitle.text = title
             if (subTitle != "") { contentSubtitle.text = subTitle }
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(view: View) {
+            if(onClickListener != null) onClickListener!!.onItemClick(view, getAdapterPosition(), contentTitle.text.toString())
+        }
+    }
+
+    fun setClickListener(sportClickListener: ItemClickListener) {
+        this.onClickListener = sportClickListener
+    }
+
+    interface ItemClickListener {
+        fun onItemClick(view: View, position: Int, content: String)
     }
 }

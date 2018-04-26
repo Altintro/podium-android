@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.CreateFragment">
+    android:background="@color/gray_background">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Create"
-        android:gravity="center_vertical|center_horizontal"/>
+        android:id="@+id/tv_title_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        tools:text="@string/choose_sport_for_game"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/view_login"/>
 
-</FrameLayout>
+    <include
+        android:id="@+id/view_step1"
+        layout="@layout/view_create_step1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+    <include
+        android:id="@+id/view_step2"
+        layout="@layout/view_create_step2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/view_step3"
+        layout="@layout/view_create_step3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

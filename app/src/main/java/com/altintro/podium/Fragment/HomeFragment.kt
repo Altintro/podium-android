@@ -15,17 +15,17 @@ import com.altintro.podium.Activity.GameDetailActivity
 import com.altintro.podium.Adapter.MyRecyclerViewAdapter
 import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
+import com.altintro.podium.activity.AuthenticationActivity
 import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.interactor.getAll.GetAllGamesInteractorImplementation
+import com.altintro.podium.interactor.getAll.GetAllSportsInteractorImplementation
 import com.altintro.podium.interactor.getAll.GetAllInteractor
 import com.altintro.podium.interactor.getAll.GetGameDetailInteractorImplementation
 import com.altintro.podium.interactor.getAll.GetOneInteractor
 import com.altintro.podium.model.Game
 import com.altintro.podium.utils.PREFERENCES
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 
 class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
@@ -100,7 +100,7 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
 
     private fun getGames(gamesRecyclerView: RecyclerView) {
-        val getAllGamesInteractor: GetAllInteractor<List<Game>> = GetAllGamesInteractorImplementation()
+        val getAllGamesInteractor = GetAllGamesInteractorImplementation()
         getAllGamesInteractor.execute(success = object: SuccessCompletion<List<Game>>{
             override fun successCompletion(games: List<Game>) {
                 gameItems = games

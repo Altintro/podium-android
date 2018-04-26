@@ -1,6 +1,5 @@
 package com.altintro.podium.activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
@@ -11,7 +10,6 @@ import com.altintro.podium.R
 import com.altintro.podium.WikiApiService
 import com.altintro.podium.model.SignInType
 import com.altintro.podium.router.Router
-import com.altintro.podium.utils.PREFERENCES
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult

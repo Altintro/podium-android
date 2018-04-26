@@ -68,7 +68,8 @@
         <activity
             android:name=".Activity.GameDetailActivity"
             android:label="@string/title_activity_game_detail"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activity.GameCreateActivity"></activity>
     </application>
 
 </manifest>

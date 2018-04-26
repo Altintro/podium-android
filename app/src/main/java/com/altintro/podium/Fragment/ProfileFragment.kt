@@ -38,8 +38,7 @@ class ProfileFragment : Fragment() {
         user = arguments?.getSerializable(ARG_CONTENT) as User
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         if (inflater != null) {
 

@@ -5,17 +5,19 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.altintro.podium.OrientationMode
 import com.altintro.podium.R
-import com.altintro.podium.adapter.GenericRecyclerViewAdapter
+import com.altintro.podium.adapter.RecyclerViewAdapter
 import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
 
-class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fragment() {
+class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fragment(), RecyclerViewAdapter.ItemClickListener {
+
     companion object {
         val ARG_CONTENT = "ARG_CONTENT"
         val ARG_TITLE = "ARG_TITLE"
@@ -48,13 +50,8 @@ class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fra
             val title = arguments!!.getString(GenericFragmentHorizontalRecyclerView.ARG_TITLE)
             titleText.text = title
 
-            val adapter = GenericRecyclerViewAdapter<Z,T>(content, OrientationMode.HORIZONTAL)
-            adapter.onClickListener = View.OnClickListener { view ->
-                val position = recyclerViewContent.getChildAdapterPosition(view)
-
-                // ToDo: get content and set action when user push over this content
-
-            }
+            val adapter = RecyclerViewAdapter<Z,T>(content, OrientationMode.HORIZONTAL)
+            adapter.setClickListener(this)
             recyclerViewContent.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             recyclerViewContent.itemAnimator = DefaultItemAnimator()
             recyclerViewContent.adapter = adapter
@@ -64,5 +61,9 @@ class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fra
         return fragmentView
 
 
+    }
+
+    override fun onItemClick(view: View, position: Int, content: String) {
+        Log.d("ON CLICK ", "DENTRO" )
     }
 }
