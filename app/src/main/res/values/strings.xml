@@ -22,5 +22,6 @@
     <string name="popular_sports_title">Popular Sports</string>
     <string name="upcoming_game_title">Upcoming games</string>
     <string name="title_activity_game_detail">GameDetailActivity</string>
+    <string name="no_participants_text">No Participants for this game yet.</string>
 
 </resources>

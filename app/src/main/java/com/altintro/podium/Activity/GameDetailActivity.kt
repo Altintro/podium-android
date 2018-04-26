@@ -2,12 +2,9 @@ package com.altintro.podium.Activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.support.v7.widget.GridLayoutManager
+import com.altintro.podium.Adapter.ParticipantsRecyclerViewAdapter
 import com.altintro.podium.R
-import com.altintro.podium.interactor.ErrorCompletion
-import com.altintro.podium.interactor.SuccessCompletion
-import com.altintro.podium.interactor.getAll.GetGameDetailInteractorImplementation
-import com.altintro.podium.interactor.getAll.GetOneInteractor
 import com.altintro.podium.model.Game
 
 import kotlinx.android.synthetic.main.activity_game_detail.*
@@ -20,6 +17,7 @@ class GameDetailActivity : AppCompatActivity() {
     }
 
     lateinit var hardcodedLocations:ArrayList<String>
+    private lateinit var adapter: ParticipantsRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +26,8 @@ class GameDetailActivity : AppCompatActivity() {
 
         //TODO: change locations to real when they come from the server
         hardcodedLocations = arrayListOf("Avenida Siempre Viva 1732, Springfield", "Greifswalder Strasse 152, Berlin", "Maggio 355, Buenos Aires", "Calle de Carretas 6, Madrid", "Avenida Touroperador Kouni 15, Las Palmas")
+
+        title = "Game Detail"
 
         val game: Game = intent.getSerializableExtra(PARAM_GAME) as Game
         fillLayoutWithGameInfo(game)
@@ -41,6 +41,15 @@ class GameDetailActivity : AppCompatActivity() {
         val randomLocation = hardcodedLocations[(Math.random() * (hardcodedLocations.count() - 1)).toInt()]
         game_location.text = randomLocation
         game_date.text = game.date.toString()
+
+        if (game.participants.count() > 0) {
+            participants_list_view.layoutManager = GridLayoutManager(baseContext, 2, GridLayoutManager.VERTICAL, false);
+            adapter = ParticipantsRecyclerViewAdapter(baseContext, game.participants)
+            //adapter.setClickListener(this)
+            participants_list_view.adapter = adapter
+        } else {
+            participants_title_view.text = getString(R.string.no_participants_text)
+        }
     }
 
 }

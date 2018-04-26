@@ -16,6 +16,7 @@ import com.altintro.podium.model.Aggregate
 import com.altintro.podium.model.Listable
 
 class GenericFragmentHorizontalRecyclerView <Z: Listable, T : Aggregate<Z>>: Fragment() {
+
     companion object {
         val ARG_CONTENT = "ARG_CONTENT"
         val ARG_TITLE = "ARG_TITLE"

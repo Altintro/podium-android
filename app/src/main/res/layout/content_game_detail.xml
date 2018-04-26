@@ -81,17 +81,22 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/participants_title_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_medium"
         android:textColor="@color/text_dark"
         android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
         android:text="Participants"/>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginRight="@dimen/small_margin"
+        android:id="@+id/participants_list_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin">
     </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

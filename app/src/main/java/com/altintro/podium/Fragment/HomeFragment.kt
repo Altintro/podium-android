@@ -23,9 +23,7 @@ import com.altintro.podium.interactor.getAll.GetGameDetailInteractorImplementati
 import com.altintro.podium.interactor.getAll.GetOneInteractor
 import com.altintro.podium.model.Game
 import com.altintro.podium.utils.PREFERENCES
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 
 class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
