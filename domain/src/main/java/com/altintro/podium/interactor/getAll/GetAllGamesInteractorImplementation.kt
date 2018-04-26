@@ -9,9 +9,9 @@ import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.model.*
 import java.util.*
 
-class GetAllGamesInteractorImplementation: GetAllInteractor<List<Game>> {
+class GetAllGamesInteractorImplementation{
 
-    override fun execute(success: SuccessCompletion<List<Game>>, error: ErrorCompletion) {
+    fun execute(success: SuccessCompletion<List<Game>>, error: ErrorCompletion) {
 
         val repository: Repository<GameEntity> = RepositoryGamesImplementation()
 
