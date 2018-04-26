@@ -38,7 +38,7 @@ class GetUserInteractorFakeImpl : GetUserInteractor {
                         email = "a@b.c",
                         interests = fakeSports(7, "Sport #"),
                         gamesPlayed = fakeGames(15, "Played game #"),
-                        gamesWon = Games(ArrayList<Game>()),
+                        gamesWon = ArrayList<Game>(),
                         gamesUpcoming = fakeGames(6, "Next game #"),
                         gamesPlaying = fakeGames(2, "Playing game #")
         )

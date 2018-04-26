@@ -5,6 +5,7 @@ import com.altintro.podium.Model.SportEntity
 import com.altintro.podium.Model.UserEntity
 import com.altintro.podium.model.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 object Mapper {
@@ -61,7 +62,7 @@ object Mapper {
                 gamesPlayed = mapEntityToGames(it.gamesPlayed),
                 gamesPlaying = mapEntityToGames(it.gamesPlaying),
                 gamesUpcoming = mapEntityToGames(it.gamesUpcoming),
-                gamesWon = mapEntityToGames(it.gamesWon),
+                gamesWon = ArrayList<Game>(),               //TODO: Get real amount of games won
                 hasPassword = it.hasPassword,
                 mergedWithFb = it.mergedWithFb,
                 mergedWithGoogle = it.mergedWithGoogle)
@@ -93,7 +94,7 @@ object Mapper {
                     it.name,
                     mapSportEntityToSport(it.sport),
                     ArrayList<Tournament>(),
-                    ArrayList<Team>(),
+                    ArrayList<User>(),
                     null,
                     null,
                     it.concluded,

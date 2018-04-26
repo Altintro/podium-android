@@ -37,8 +37,10 @@ data class User(@SerializedName("_id") val id: String,
     override fun getSubtitle(): String {
 
         if (gamesWon?.count() != 0) {
-            var diferentSports = gamesWon?.games?.groupingBy { it.sport.name }?.eachCount()?.count()
-            return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
+            //TODO: get real amount of different sports
+            //var diferentSports = gamesWon?.games?.groupingBy { it.sport.name }?.eachCount()?.count()
+            //return "${gamesWon?.count()} victories in ${diferentSports} diferent sports"
+            return "${gamesWon?.count()} victories"
         } else {
             return "No victories"
         }
