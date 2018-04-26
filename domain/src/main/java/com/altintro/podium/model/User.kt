@@ -22,9 +22,9 @@ data class User(@SerializedName("_id") val id: String,
                 val tournamentsUpcoming: List<Tournament>? = null,
                 val tournamentsWon: List<Tournament>? = null,
                 val gamesPlayed: Games? = null,
-                val gamesPlaying: Games? = null,
+                val gamesPlaying: Games??= null,
                 val gamesUpcoming: Games? = null,
-                val gamesWon: List<Game>? = null) : Listable {
+                val gamesWon: Games? = null) : Listable {
 
     override fun get_Image(): String {
         return profilePic
