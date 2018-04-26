@@ -7,20 +7,18 @@ import java.util.*
 data class Game(@SerializedName("_id") val id: String,
                 val name: String,
                 val sport: Sport,
-                val tournament: List<Tournament>?,
-                val participants: List<Team>,
+                val tournament: List<Tournament>,
+                val participants: List<User>,
                 val wins: Team?,
                 val loses: Team?,
                 val concluded: Boolean,
                 val date: Date,
-                val latitude: Float?,
-                val longitude: Float?,
-                val modality: Modality?,
-                val open: Boolean?,
-                val levelAverage: Level?,
+                val latitude: Float,
+                val longitude: Float,
+                val modality: Modality,
+                val open: Boolean,
+                val levelAverage: Level,
                 val description: String) : Listable {
-
-
 
     override fun get_Image(): String {
         return ""

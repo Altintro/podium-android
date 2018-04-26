@@ -10,6 +10,7 @@ data class GameEntity (@SerializedName("_id")
         val id: String,
         val name: String,
         val sport: SportEntity,
+        val participants: List<UserEntity>,
         val concluded: Boolean,
         val date: Date,
         val latitude: Float,

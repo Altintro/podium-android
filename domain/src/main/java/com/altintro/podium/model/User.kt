@@ -6,8 +6,11 @@ data class User(@SerializedName("_id") val id: String,
                 val name: String,
                 val profilePic: String,
                 val alias: String,
-                val pass: String = "",
+                val mergedWithGoogle: Boolean,
+                val hasPassword: Boolean,
+                val mergedWithFb: Boolean,
                 val gender: Gender? = null,
+                val pass: String = "",
                 val birthdate: String = "",
                 val latitude: Float = 0f,
                 val longitude: Float = 0f,
@@ -21,10 +24,7 @@ data class User(@SerializedName("_id") val id: String,
                 val gamesPlayed: Games? = null,
                 val gamesPlaying: Games? = null,
                 val gamesUpcoming: Games? = null,
-                val gamesWon: Games? = null,
-                val mergedWithGoogle: Boolean,
-                val hasPassword: Boolean,
-                val mergedWithFb: Boolean) : Listable {
+                val gamesWon: List<Game>? = null) : Listable {
 
     override fun get_Image(): String {
         return profilePic

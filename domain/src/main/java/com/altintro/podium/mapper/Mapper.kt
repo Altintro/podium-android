@@ -17,8 +17,11 @@ object Mapper {
                         it.name,
                         it.profilePic,
                         it.alias,
-                        it.pass,
+                        it.mergedWithGoogle,
+                        it.hasPassword,
+                        it.mergedWithFb,
                         it.gender,
+                        it.pass,
                         it.birthdate,
                         it.latitude,
                         it.longitude,
@@ -32,10 +35,7 @@ object Mapper {
                         it.gamesPlayed,
                         it.gamesPlaying,
                         it.gamesUpcoming,
-                        it.gamesWon,
-                        it.mergedWithGoogle,
-                        it.hasPassword,
-                        it.mergedWithFb)
+                        it.gamesWon)
 
                 tempList.add(user)
         }

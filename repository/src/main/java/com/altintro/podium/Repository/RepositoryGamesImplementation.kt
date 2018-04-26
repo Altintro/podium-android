@@ -8,7 +8,6 @@ import io.reactivex.schedulers.Schedulers
 
 class RepositoryGamesImplementation : Repository<GameEntity> {
 
-
     private var gamesDisposable: Disposable? = null
 
     private val wikiApiService by lazy {
