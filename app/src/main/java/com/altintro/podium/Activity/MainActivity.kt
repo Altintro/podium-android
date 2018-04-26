@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val router: Router = Router()
                     // Todo: Redirigir al usuario a la pantalla de autenticación
+                    router.goToAuthenticationActivityFromMain(this)
 
                 }
 
