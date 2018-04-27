@@ -36,15 +36,7 @@ interface WikiApiService {
 
     //-----------------------------------User-----------------------------------
     @GET("users")
-    fun getUser(@Header("x-access-token") token: String,
-                @Query("name") name: String,
-                @Query("alias") alias: String,
-                @Query("limit") limit: String,
-                @Query("skip") sinceSkip: String,
-                @Query("skip") toSkip: String,
-                @Query("fields") fields1: String,
-                @Query("fields") fields2: String,
-                @Query("sort") sort: String): Observable<ResponseSearchUsers>
+    fun getUsers(): Observable<ResponseSearchUsers>
 
     @GET("users/{id}")
     fun getUserDetail(@Header("x-access-token") token: String,

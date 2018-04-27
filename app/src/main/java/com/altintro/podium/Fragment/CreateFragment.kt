@@ -16,8 +16,10 @@ import com.altintro.podium.adapter.RecyclerViewAdapter
 import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.interactor.getAll.GetAllSportsInteractorImplementation
+import com.altintro.podium.interactor.getAll.GetAllUsersInteractorImplementation
 import com.altintro.podium.model.Sport
 import com.altintro.podium.model.Sports
+import com.altintro.podium.model.User
 import com.altintro.podium.model.Users
 import kotlinx.android.synthetic.main.fragment_create.view.*
 
@@ -25,8 +27,9 @@ import kotlinx.android.synthetic.main.fragment_create.view.*
 class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
 
     private lateinit var fragmentView: View
-    private lateinit var sport : Sport
+    private lateinit var sport: Sport
     var sportItems = Sports(ArrayList<Sport>())
+    var userItems = Users(ArrayList<User>())
 
     companion object {
         fun newInstance(): CreateFragment {
@@ -43,7 +46,6 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
 
         return fragmentView
     }
-
 
 
     private fun setupComponents() {
@@ -63,11 +65,15 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
             goToStep(3)
         }
 
+        fragmentView.findViewById<Button>(R.id.btn_create).setOnClickListener {
+            //TODO Crear el game recopilando toda la información
+        }
+
     }
 
-    fun bindRecyclerViewSport(sports: Sports,recyclerView: RecyclerView){
+    fun bindRecyclerViewSport(sports: Sports, recyclerView: RecyclerView) {
 
-        val horizontalLayoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
+        val horizontalLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = horizontalLayoutManager
 
         val adapter = RecyclerViewAdapter(sports, OrientationMode.HORIZONTAL)
@@ -76,9 +82,9 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
 
     }
 
-    fun bindRecyclerViewUser(users: Users, recyclerView: RecyclerView){
+    fun bindRecyclerViewUser(users: Users, recyclerView: RecyclerView) {
 
-        val horizontalLayoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL, false)
+        val horizontalLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = horizontalLayoutManager
 
         val adapter = RecyclerViewAdapter(users, OrientationMode.VERTICAL)
@@ -88,11 +94,17 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
     }
 
     override fun onItemClick(view: View, position: Int, content: String) {
-        goToStep(2)
-        val sport = content
+        //TODO Comprobar si el objeto que se manda es un Sport o User
+        if(content.contains("Tennis") || content.contains("Basketball") || content.contains("Football") || content.contains("Padel")){
+            goToStep(2)
+        }else{
+            //TODO Guardar el usuario
+            Toast.makeText(activity!!, "Usuario " + content, Toast.LENGTH_LONG).show()
+        }
+
     }
 
-    fun goToStep(step: Int){
+    fun goToStep(step: Int) {
 
         when (step) {
             1 -> showStep1()
@@ -101,21 +113,21 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
         }
     }
 
-    fun showStep1(){
+    fun showStep1() {
         fragmentView.tv_title_step.text = getString(R.string.step1)
         fragmentView.view_step1.visibility = View.VISIBLE
         fragmentView.view_step2.visibility = View.GONE
         fragmentView.view_step3.visibility = View.GONE
     }
 
-    fun showStep2(){
+    fun showStep2() {
         fragmentView.tv_title_step.text = getString(R.string.step2)
         fragmentView.view_step2.visibility = View.VISIBLE
         fragmentView.view_step1.visibility = View.GONE
         fragmentView.view_step3.visibility = View.GONE
     }
 
-    fun showStep3(){
+    fun showStep3() {
         fragmentView.tv_title_step.text = getString(R.string.step3)
         fragmentView.view_step3.visibility = View.VISIBLE
         fragmentView.view_step1.visibility = View.GONE
@@ -131,7 +143,7 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
         getAllSportsInteractor.execute(success = object : SuccessCompletion<Sports> {
             override fun successCompletion(sports: Sports) {
                 sportItems = sports
-                bindRecyclerViewSport(sportItems,recyclerView = recyclerView)
+                bindRecyclerViewSport(sportItems, recyclerView = recyclerView)
             }
 
         }, error = object : ErrorCompletion {
@@ -144,6 +156,19 @@ class CreateFragment : Fragment(), RecyclerViewAdapter.ItemClickListener {
 
     private fun getUsers(recyclerView: RecyclerView) {
 
-    }
+        val getAllUsersInteractorImplementation = GetAllUsersInteractorImplementation()
+        getAllUsersInteractorImplementation.execute(success = object : SuccessCompletion<Users> {
+            override fun successCompletion(users: Users) {
+                userItems = users
+                bindRecyclerViewUser(userItems, recyclerView = recyclerView)
+            }
 
+        }, error = object : ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(activity!!, errorMessage, Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+    }
 }

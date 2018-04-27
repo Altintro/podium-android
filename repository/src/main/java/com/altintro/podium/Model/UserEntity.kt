@@ -20,7 +20,7 @@ data class UserEntity (@SerializedName("_id")
         val gamesPlaying: List<GameEntity>? = null,
         val gamesUpcoming: List<GameEntity>? = null,
         val gamesWon: List<GameEntity>? = null,
-        val mergedWithGoogle: Boolean,
-        val hasPassword: Boolean,
-        val mergedWithFb: Boolean
+        val mergedWithGoogle: Boolean?,
+        val hasPassword: Boolean?,
+        val mergedWithFb: Boolean?
 )

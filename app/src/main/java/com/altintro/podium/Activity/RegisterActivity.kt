@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -18,6 +20,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import android.view.inputmethod.InputMethodManager
+import com.altintro.podium.OrientationMode
 import com.altintro.podium.R
 import com.altintro.podium.adapter.RecyclerViewAdapter
 import com.altintro.podium.fragment.GenericFragmentHorizontalRecyclerView
@@ -39,11 +42,11 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
     private var email: String = ""
     private var name: String = ""
     private var alias: String = ""
+    private var sport: String = ""
     private lateinit var prefs: SharedPreferences
     private val router: Router = Router()
     private val TAG = AuthenticationActivity::class.qualifiedName
     private var sportItems = Sports(ArrayList<Sport>())
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,9 +93,21 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
         btn_register.setOnClickListener{
             name = et_fullName.text.toString()
             alias = et_alias.text.toString()
+            //TODO Añadir el id del Sport obtenido en el onClick
             val userRegister = UserRegister(name, alias, email)
             registerUser(userRegister)
         }
+    }
+
+    fun bindRecyclerViewSport(sports: Sports,recyclerView: RecyclerView){
+
+        val horizontalLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = horizontalLayoutManager
+
+        val adapter = RecyclerViewAdapter(sports, OrientationMode.HORIZONTAL)
+        adapter.setClickListener(this)
+        recyclerView.adapter = adapter
+
     }
 
     private fun loadView(){
@@ -120,7 +135,8 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
         container_message.visibility = View.VISIBLE
     }
     override fun onItemClick(view: View, position: Int, content: String) {
-        Toast.makeText(this, content, Toast.LENGTH_LONG).show()
+        //TODO: Obtener el item seleccionada, guardarlo y añadirlo a la petición de registro
+        sport = content.toString()
     }
 
 
@@ -174,7 +190,7 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
                 .subscribe(
                         { result ->
                             if(result.auth == false){
-                                getSports()
+                                getSports(rv_sport)
                                 prepareRegisterViewFromEmail()
                             }else if(result.auth == true){
                                 prefs.edit().putString("name", name).apply()
@@ -211,26 +227,22 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
 
     }
 
-    private fun getSports() {
+    private fun getSports(recyclerView: RecyclerView) {
 
         val getAllSportsInteractor = GetAllSportsInteractorImplementation()
         getAllSportsInteractor.execute(success = object : SuccessCompletion<Sports> {
             override fun successCompletion(sports: Sports) {
                 sportItems = sports
-                createRecyclerView()
+                bindRecyclerViewSport(sportItems,recyclerView = recyclerView)
             }
 
         }, error = object : ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
-                Toast.makeText(baseContext, errorMessage, Toast.LENGTH_LONG).show()
+
             }
 
         })
     }
 
-    private fun createRecyclerView() {
-        val userInteresentsFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(sportItems, "Interesents")
-        supportFragmentManager.beginTransaction().add(R.id.interests_fragment, userInteresentsFragment).commit()
-    }
 }
 

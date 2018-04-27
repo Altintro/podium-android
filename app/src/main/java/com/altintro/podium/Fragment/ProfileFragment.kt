@@ -40,16 +40,16 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        if (inflater != null) {
 
-            fragmentView = inflater.inflate(R.layout.fragment_profile, container, false)
+            val fragmentView = inflater.inflate(R.layout.fragment_profile, container, false)
+
 
             // Configuro fragmento de datos de usuario
             val userHeaderFragment: GenericFragmentDetailHeader<User> = GenericFragmentDetailHeader.newInstance<User>(user)
             fragmentManager!!.beginTransaction().replace(R.id.header_fragment, userHeaderFragment).commit()
 
             // Configuro fragmento de intereses
-            val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(user.interests, "Ranking")
+            val userPreferencesFragment = GenericFragmentHorizontalRecyclerView.newInstance<Sport, Sports>(user.interests, "Interests")
             fragmentManager!!.beginTransaction().replace(R.id.interests_fragment, userPreferencesFragment).commit()
 
             // Configuro fragmento de proximas partidas
@@ -59,7 +59,6 @@ class ProfileFragment : Fragment() {
             // Configuro fragmento de últimas partidas
             val userLastPlayedFragment = GenericFragmentVerticalRecyclerView.newInstance<Game, Games>(user.gamesPlayed, "Last Played")
             fragmentManager!!.beginTransaction().replace(R.id.last_played_fragment, userLastPlayedFragment).commit()
-        }
 
         return fragmentView
     }
