@@ -14,10 +14,11 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        tools:text="@string/choose_sport_for_game"
+        android:textColor="@color/view_login"
+        android:textSize="@dimen/font_big"
         android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="@color/view_login"/>
+        tools:text="@string/choose_sport_for_game"
+        android:layout_marginBottom="@dimen/big_margin" />
 
     <include
         android:id="@+id/view_step1"
@@ -25,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_title_step"/>
 
     <include
         android:id="@+id/view_step2"
@@ -33,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_title_step"/>
 
     <include
         android:id="@+id/view_step3"
@@ -41,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_title_step"/>
 
 </RelativeLayout>

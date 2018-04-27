@@ -18,17 +18,16 @@ class RepositoryUserImplementation : Repository<UserEntity> {
 
     override fun getAll(success: (items: List<UserEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
 
-/*
-        userDisposable = wikiApiService.getGames()
+
+        userDisposable = wikiApiService.getUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
-                    val games: List<GameEntity> = result.result
-                    success(games)
+                    val users: List<UserEntity> = result.result
+                    success(users)
                 }, { error ->
                     error(error.localizedMessage)
                 })
-*/
 
     }
 

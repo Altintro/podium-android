@@ -12,16 +12,13 @@
         class="com.altintro.podium.fragment.HeaderFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:layout="@layout/fragment_header" />
 
     <android.support.constraint.Guideline
@@ -210,14 +207,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_alias" />
 
-        <FrameLayout
-            android:id="@+id/interests_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_register"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_alias" />
@@ -229,6 +225,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/btn_login_email"
             android:fontFamily="@string/com_facebook_loginview_log_in_button"
             android:text="@string/register"
@@ -239,7 +236,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/rv_sport"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_sport" />
 
     </android.support.constraint.ConstraintLayout>
 

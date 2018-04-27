@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 class RepositorySportsImplementation : Repository<SportEntity> {
 
     override fun getOne(objId: String, success: (item: SportEntity) -> Unit, error: (errorMessage: String) -> Unit) {
+
     }
 
     private var sportsDisposable: Disposable? = null
