@@ -32,5 +32,6 @@
     <string name="Title">Title</string>
     <string name="When">When?</string>
     <string name="Details">Details</string>
+    <string name="step4">Congrats! The game has been created successfully</string>
 
 </resources>

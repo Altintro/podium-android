@@ -42,9 +42,9 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
     private var email: String = ""
     private var name: String = ""
     private var alias: String = ""
-    private var sport: String = ""
     private lateinit var prefs: SharedPreferences
     private val router: Router = Router()
+    private var sport: Sport = Sport("","","","")
     private val TAG = AuthenticationActivity::class.qualifiedName
     private var sportItems = Sports(ArrayList<Sport>())
 
@@ -93,8 +93,7 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
         btn_register.setOnClickListener{
             name = et_fullName.text.toString()
             alias = et_alias.text.toString()
-            //TODO Añadir el id del Sport obtenido en el onClick
-            val userRegister = UserRegister(name, alias, email)
+            val userRegister = UserRegister(name, alias, email, sport.name)
             registerUser(userRegister)
         }
     }
@@ -135,8 +134,7 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
         container_message.visibility = View.VISIBLE
     }
     override fun onItemClick(view: View, position: Int, content: String) {
-        //TODO: Obtener el item seleccionada, guardarlo y añadirlo a la petición de registro
-        sport = content.toString()
+        sport = sportItems.get(position)
     }
 
 

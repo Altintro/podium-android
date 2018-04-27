@@ -61,7 +61,7 @@ interface WikiApiService {
 
     @POST("games")
     fun setGame(@Header("x-access-token") token: String,
-                @Body game: GameCreation)
+                @Body game: GameCreation): Observable<ResponseGameSubscription>
 
     @POST("games/{id}/join")
     fun subscribeToGame(@Header("x-access-token") token: String,

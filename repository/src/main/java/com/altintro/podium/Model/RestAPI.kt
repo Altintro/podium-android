@@ -20,7 +20,8 @@ data class ResponseRefreshToken(val auth: Boolean,
 
 data class UserRegister(var name: String,
                         val alias: String,
-                        val email: String) : Serializable
+                        val email: String,
+                        val sports: String) : Serializable
 
 data class ResponseSearchUsers(var result: List<UserEntity>) : Serializable
 
@@ -29,7 +30,10 @@ data class ResponseSearchMyProfile(var result: UserEntity) : Serializable
 
 //-----------------------------------Game-----------------------------------
 
-data class GameCreation(var name: String)
+data class GameCreation(var name: String,
+                        var sport: String,
+                        var description: String,
+                        var date: String)
 
 data class ResponseSearchGame(var result: List<GameEntity>) : Serializable
 

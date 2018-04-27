@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
@@ -17,14 +16,13 @@ import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletionBool
 import com.altintro.podium.interactor.joinOneInteractor.JoinOneInteractor
 import com.altintro.podium.interactor.joinOneInteractor.JoinOneInteractorImplementation
+import com.altintro.podium.interactor.joinOneInteractor.SetGameInteractorImplementation
 import com.altintro.podium.model.Game
-import com.altintro.podium.model.User
 import com.altintro.podium.utils.PREFERENCES
 
 import kotlinx.android.synthetic.main.activity_game_detail.*
 import kotlinx.android.synthetic.main.content_game_detail.*
 import java.util.*
-import kotlin.concurrent.timer
 import kotlin.concurrent.timerTask
 
 class GameDetailActivity : AppCompatActivity() {
