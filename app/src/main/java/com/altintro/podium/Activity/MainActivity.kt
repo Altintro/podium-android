@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
         userToken = prefs.getString("token", "")
-
+        homeFragment = HomeFragment.newInstance()
 
         setupComponents()
 
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } else {
-            homeFragment = HomeFragment.newInstance()
+
             openFragment(homeFragment)
         }
     }

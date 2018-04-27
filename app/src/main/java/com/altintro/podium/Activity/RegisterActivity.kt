@@ -23,7 +23,6 @@ import android.view.inputmethod.InputMethodManager
 import com.altintro.podium.OrientationMode
 import com.altintro.podium.R
 import com.altintro.podium.adapter.RecyclerViewAdapter
-import com.altintro.podium.fragment.GenericFragmentHorizontalRecyclerView
 import com.altintro.podium.interactor.ErrorCompletion
 import com.altintro.podium.interactor.SuccessCompletion
 import com.altintro.podium.interactor.getAll.GetAllSportsInteractorImplementation
@@ -173,7 +172,12 @@ class RegisterActivity : AppCompatActivity(), RecyclerViewAdapter.ItemClickListe
                         { result ->
                             Log.d("Result", result.toString())
                             if(result.auth == true) {
-                                prepareMessageMagicLinkView()
+
+                                if(ACTION != CONNECT_WITH_EMAIL){
+                                    router.goToMainActivityFromRegister(this)
+                                }else{
+                                    prepareMessageMagicLinkView()
+                                }
                             }
                         },
                         { error ->
