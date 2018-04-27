@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.altintro.podium.R
 import com.altintro.podium.model.Game
@@ -23,17 +24,15 @@ class ParticipantsView : RelativeLayout {
 
     fun setImageForUser(game: Game){
         Log.d("CUSTOM VIEW", "GAME" + game.toString())
-        
-        Picasso.get().load(R.drawable.user1)
-                .placeholder(R.drawable.loading).resize(150, 150).centerCrop()
-                .into(iv_user1)
 
-        Picasso.get().load(R.drawable.user2)
-                .placeholder(R.drawable.loading).resize(150, 150).centerCrop()
-                .into(iv_user2)
-
-        Picasso.get().load(R.drawable.user3)
-                .placeholder(R.drawable.loading).resize(150, 150).centerCrop()
-                .into(iv_user3)
+        val imageViews = arrayListOf<ImageView>(iv_user1,iv_user2, iv_user3)
+        var count = 0
+        game.participants.forEach {
+            Picasso.get().load(game.participants[0].profilePic)
+                    .placeholder(R.drawable.loading).resize(100, 100).centerCrop()
+                    .into(imageViews[count])
+            count++
         }
     }
+
+}
