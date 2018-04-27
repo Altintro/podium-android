@@ -1,5 +1,6 @@
 package com.altintro.podium.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -30,8 +31,14 @@ class AuthenticationActivity : AppCompatActivity() {
     private val router: Router = Router()
     private lateinit var prefs: SharedPreferences
 
+    private var callerSection:String? = null
+
     private val wikiApiService by lazy {
         WikiApiService.create()
+    }
+
+    companion object {
+        val ACTIVITY_CALLER = "ActivityCaller"
     }
 
     private var disposable: Disposable? = null
@@ -41,6 +48,8 @@ class AuthenticationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_authentication)
 
         prefs = this.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+
+        callerSection = intent.getStringExtra(ACTIVITY_CALLER)
 
         initializeFacebookData()
         setupComponents()
@@ -94,7 +103,7 @@ class AuthenticationActivity : AppCompatActivity() {
                             Log.d("Result", result.toString())
                             if(result.auth == true && result.type.equals(SignInType.signin.name)){
                                 prefs.edit().putString("token", result.accessToken).apply()
-                                router.goToMainActivityFromAuthentication(this)
+                                router.goToMainActivityFromAuthentication(this, callerSection!!)
                                 finish()
                             }else if(result.auth == true && result.type.equals(SignInType.signup.name)){
                                 router.goToRegisterActivityWithFacebook(this)
