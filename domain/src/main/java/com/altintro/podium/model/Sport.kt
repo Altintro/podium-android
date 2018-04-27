@@ -10,11 +10,11 @@ data class Sport(@SerializedName("_id")
                  val description: String = "",
                  val rules: String= "",
                  val popularity: Float = 0f,
-                 val activeTournaments: List<Tournament> = ArrayList<Tournament>(),
-                 val openTournaments: List<Tournament>  = ArrayList<Tournament>(),
-                 val activeGames: List<Game> = ArrayList<Game>(),
-                 val openGames: List<Game> = ArrayList<Game>(),
-                 val ranking: List<User> = ArrayList<User>()) : Listable {
+                 val activeTournaments: List<Tournament>? = ArrayList<Tournament>(),
+                 val openTournaments: List<Tournament>?  = ArrayList<Tournament>(),
+                 val activeGames: List<Game>? = ArrayList<Game>(),
+                 val openGames: List<Game>? = ArrayList<Game>(),
+                 val ranking: List<User>? = ArrayList<User>()) : Listable {
 
     override fun get_Image(): String {
         return image

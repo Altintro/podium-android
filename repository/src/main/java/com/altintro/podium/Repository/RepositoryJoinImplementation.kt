@@ -1,5 +1,6 @@
 package com.altintro.podium.Repository
 
+import com.altintro.podium.Model.GameCreation
 import com.altintro.podium.Model.GameEntity
 import com.altintro.podium.WikiApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,4 +27,18 @@ class RepositoryJoinImplementation: RepositoryNoClass {
                     error(error.localizedMessage)
                 })
     }
+
+    override fun setGame(token: String, item: GameCreation, success: (result: Boolean) -> Unit, error: (errorMessage: String) -> Unit) {
+        gamesDisposable = wikiApiService.setGame(token,item)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    success(result.success)
+                }, { error ->
+                    error(error.localizedMessage)
+                })
+
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.altintro.podium.Repository
 
+import com.altintro.podium.Model.GameCreation
 import com.altintro.podium.Model.GameEntity
 import com.altintro.podium.WikiApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -39,4 +40,5 @@ class RepositoryGamesImplementation : Repository<GameEntity> {
                     error(error.localizedMessage)
                 })
     }
+
 }
