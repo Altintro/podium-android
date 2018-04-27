@@ -28,7 +28,7 @@ import com.altintro.podium.utils.PREFERENCES
 import io.reactivex.disposables.Disposable
 
 
-class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
+class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener, GameDetailActivity.OnGameSubscriptionListener {
 
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
@@ -53,6 +53,11 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
         val homeView = setupComponents(inflater, container)
 
         return homeView
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     private fun setupComponents(inflater: LayoutInflater, container: ViewGroup?): View? {
@@ -95,6 +100,12 @@ class HomeFragment : Fragment(), MyRecyclerViewAdapter.ItemClickListener {
             }
         })
 
+    }
+
+
+    //GameDetail Interface method
+    override fun refreshList() {
+        //getGames()
     }
 
     //----------------------------------------------- CONNECTION WITH THE API ----------------------------------
