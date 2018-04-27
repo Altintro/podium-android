@@ -23,6 +23,9 @@ import com.altintro.podium.utils.PREFERENCES
 
 import kotlinx.android.synthetic.main.activity_game_detail.*
 import kotlinx.android.synthetic.main.content_game_detail.*
+import java.util.*
+import kotlin.concurrent.timer
+import kotlin.concurrent.timerTask
 
 class GameDetailActivity : AppCompatActivity() {
 
@@ -30,9 +33,15 @@ class GameDetailActivity : AppCompatActivity() {
         val PARAM_GAME = "game"
     }
 
+    // Container Activity or Fragment must implement this interface
+    interface OnGameSubscriptionListener {
+        fun refreshList()
+    }
+
     lateinit var hardcodedLocations:ArrayList<String>
     private lateinit var adapter: ParticipantsRecyclerViewAdapter
     private lateinit var prefs: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +81,7 @@ class GameDetailActivity : AppCompatActivity() {
 
         join_game_button.setOnClickListener {
             joinGame(game)
+            parent
         }
     }
 
@@ -90,12 +100,16 @@ class GameDetailActivity : AppCompatActivity() {
 
                     Toast.makeText(baseContext, "Successfully registered to game", Toast.LENGTH_LONG).show()
                     join_game_button.visibility = View.INVISIBLE
+
+                    val timer = Timer()
+                    timer.schedule(timerTask { finish() }, 2000)
+
                 }
 
             }, error = object: ErrorCompletion {
 
                 override fun errorCompletion(errorMessage: String) {
-                    Toast.makeText(baseContext, errorMessage, Toast.LENGTH_LONG).show()
+                    Toast.makeText(baseContext, errorMessage, Toast.LENGTH_SHORT).show()
                 }
 
             })
